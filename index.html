@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jardim Encanto</title>  
+        <link rel="icon" href="img/logo.jpg" type="image/ico">
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+        <link href="css/animate.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+
+        <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+
+        <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
+
+        <link href="css/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+        <link href="css/plugins/cropper/cropper.min.css" rel="stylesheet">
+
+        <link href="css/plugins/switchery/switchery.css" rel="stylesheet">
+
+        <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+
+        <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+        <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+        <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+         <!-- Morris -->
+        <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+        <script src="library/angular/angular.min.js"></script>
+        <script src="library/angular/angular-route.min.js"></script>
+        <script src="partials/app.js"></script>
+
+        <script src="partials/home/homeController.js"></script>
+        <script src="partials/criancas/criancasController.js"></script>
+        <script src="partials/criancas/criancas-detailsController.js"></script>
+
+        <script src="services/fullCalendar.js"></script>
+        <script src="services/funcoesServices.js"></script>
+        <script src="services/urlServices.js"></script>
+
+        <!-- <script src="library/jquery/jquery.1.9.min.js"></script>-->
+        <!-- Mainly scripts -->
+        <script src="js/jquery-2.1.1.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="js/inspinia.js"></script>
+        <script src="js/plugins/pace/pace.min.js"></script>
+
+        <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <!-- Chosen -->
+        <script src="js/plugins/chosen/chosen.jquery.js"></script>
+
+        <!-- JSKnob -->
+        <script src="js/plugins/jsKnob/jquery.knob.js"></script>
+
+        <!-- Input Mask-->
+        <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+        <!-- Data picker -->
+        <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+        <!-- NouSlider -->
+        <script src="js/plugins/nouslider/jquery.nouislider.min.js"></script>
+
+        <!-- Switchery -->
+        <script src="js/plugins/switchery/switchery.js"></script>
+
+        <!-- IonRangeSlider -->
+        <script src="js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+        <!-- iCheck -->
+        <script src="js/plugins/iCheck/icheck.min.js"></script>
+
+        <!-- MENU -->
+        <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+        <!-- Color picker -->
+        <script src="js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+
+        <!-- Image cropper -->
+        <script src="js/plugins/cropper/cropper.min.js"></script>
+
+        <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+       
+
+    </head>
+
+    <body>
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                                <img alt="image" class="img-circle" style="width:6vw; height:15vh;" src="img/logo.jpg" />
+                                 </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Escolinha Encanto</strong>
+                                 </span> <span class="text-muted text-xs block">Administrador   <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="profile.html">Profile</a></li>
+                                <li><a href="contacts.html">Contacts</a></li>
+                                <li><a href="mailbox.html">Mailbox</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Relatórios</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="#">Pagamento</a></li>
+                            <li><a href="#">Dividas</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Crianças</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="#/criancas"><span>Crianças</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href=""><i class="fa fa-bars"></i> </a>
+                        <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                            <div class="form-group">
+                                <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i> Terminar Sessão
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+           
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content">
+                        <div ng-view></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Gilson Silva Santos &copy; 2018
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <script>
+        
+
+
+    </script>
+
+</body>
+
+</html>
