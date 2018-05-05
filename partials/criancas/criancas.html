@@ -1,0 +1,155 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-12">
+        <h4>{{tittle}}</h4>
+        <ol class="breadcrumb" style="text-align: right;">
+            <li>
+                <div class="text-center">
+			        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistarCrianca">
+			            Registar Criança
+			        </button>
+    			</div>
+            </li>
+           <!-- <li class="active">
+                <strong>Breadcrumb</strong>
+            </li>-->
+        </ol>
+    </div>
+    
+</div>
+
+<!-- Table applay Criancas -->
+
+<div class="row" style="margin-top:2vh;">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+	        <div class="ibox-title">
+	            <h5>Lista de Todas as Crianças</h5>
+	            <div class="ibox-tools">
+	                
+	            </div>
+	        </div>
+	        <div class="ibox-content">
+	            <div class="row">
+	                <div class="col-sm-9 m-b-xs">
+	                  
+	                </div>
+	                <div class="col-sm-3">
+	                    <div class="input-group"><input type="text" placeholder="Pesquisar" class="input-sm form-control" ng-model="pesquisar"> <span class="input-group-btn">
+	                                        <button type="button" class="btn btn-sm btn-primary">Pesquisar!</button> </span></div>
+	                </div>
+	            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sexo</th>
+                        <th>Alcunha </th>
+                        <th>Propina</th>
+                        <th>Nº PMI</th>
+                        <th>Morada</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="crianca in criancas | filter : pesquisar">
+                        <td>{{crianca.nome}}</small></td>
+                        <td>{{crianca.sexo}}</td>
+                        <td>{{crianca.alcunha}}</td>
+                        <td>{{crianca.propina}}</td>
+                        <td>{{crianca.numeroPMI}}</td>
+                        <td>{{crianca.morada}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        </div>
+        </div>
+
+        </div>
+
+<!-- Form Create and Edit Criancas -->
+<div class="modal inmodal fade" id="modalRegistarCrianca" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">{{tittle_modal}}</h4>
+            </div>
+            <div class="modal-body" style="background-color:#fff;">
+             	<div class="ibox-content">
+                    <form class="form-horizontal" id="form_crianca">
+                        <div class="form-group"><label class="col-lg-3 control-label">Nome</label>
+                            <div class="col-lg-9">
+                            	<input type="nome" placeholder="Nome" class="form-control" ng-model="crianca.nome"> 
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Sexo</label>
+                            <div class="col-lg-9">
+	                            <select data-placeholder="Choose a Country..." class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.sexo">
+					                <option value=""></option>
+					                <option value="Masculino">Masculino</option>
+					                <option value="Feminino">Feminino</option>
+					            </select>
+					        </div>
+                        </div>
+                       	<div class="form-group"><label class="col-lg-3 control-label">Data Nascimento</label>
+                            <div class="col-lg-9"><input type="date" class="form-control" placeholder="Data Nascimento" ng-model="crianca.dataNascimento"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Idade</label>
+                            <div class="col-lg-9"><input type="number" placeholder="Idade" readonly="" class="form-control" ng-model="crianca.idade"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Alcunha</label>
+                            <div class="col-lg-9"><input type="text" placeholder="Alcunha" class="form-control" ng-model="crianca.alcunha"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Nº PMI</label>
+                            <div class="col-lg-9"><input type="text" placeholder="Nº PMI" class="form-control" ng-model="crianca.numeroPMI"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Propina</label>
+                            <div class="col-lg-9"><input type="number" placeholder="Propina" class="form-control" ng-model="crianca.propina"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Nome Pai</label>
+                            <div class="col-lg-9"><input type="text" placeholder="Nome Pai" class="form-control" ng-model="crianca.nomePai"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Nome Mãe</label>
+                            <div class="col-lg-9"><input type="text" placeholder="Nome Mãe" class="form-control" ng-model="crianca.nomeMae"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Encaregado Educação</label>
+                            <div class="col-lg-9"><input type="text" placeholder="Encaregado Educação" class="form-control" ng-model="crianca.encaregadoEducacao"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Morada</label>
+                            <div class="col-lg-9">
+                                <select data-placeholder="Choose a Country..." class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.morada">
+                                    <option value=""></option>
+                                    <option value="Palmarejo">Palmarejo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Data Inicio Jardim</label>
+                            <div class="col-lg-9"><input type="date" class="form-control" placeholder="data Inicio Jardim" ng-model="crianca.dataInicioJardim"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-3 control-label">Estado</label>
+                            <div class="col-lg-9">
+                                <select data-placeholder="Choose a Country..." class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.estado">
+                                    <option value=""></option>
+                                    <option value="Matriculado">Matriculado</option>
+                                    <option value="Desistiu">Desistiu</option>
+                                    <option value="Escola">Escola</option>
+					            </select>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="cancelarCrianca()">Cancelar</button>
+                <button type="button" class="btn btn-primary" ng-click="criarCrianca(crianca)">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
