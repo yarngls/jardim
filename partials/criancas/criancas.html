@@ -4,7 +4,7 @@
         <ol class="breadcrumb" style="text-align: right;">
             <li>
                 <div class="text-center">
-			        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistarCrianca">
+			        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistarCrianca" ng-click="botaoRegistarCrianca()">
 			            Registar Criança
 			        </button>
     			</div>
@@ -29,16 +29,19 @@
 	            </div>
 	        </div>
 	        <div class="ibox-content">
-	            <div class="row">
-	                <div class="col-sm-9 m-b-xs">
-	                  
-	                </div>
-	                <div class="col-sm-3">
-	                    <div class="input-group"><input type="text" placeholder="Pesquisar" class="input-sm form-control" ng-model="pesquisar"> <span class="input-group-btn">
-	                                        <button type="button" class="btn btn-sm btn-primary">Pesquisar!</button> </span></div>
-	                </div>
-	            </div>
-            <div class="table-responsive">
+                <div class="row m-b-sm m-t-sm">
+                    <div class="col-md-1">
+                        <button type="button" id="loading-example-btn" class="btn btn-primary"><i class="fa fa-refresh"></i> Actualizar</button>
+                    </div>
+                    <div class="col-md-1">
+                       
+                    </div>
+                    <div class="col-md-10">
+                        <div class="input-group"><input type="text" placeholder="Pesquisar" class="input-sm form-control"  ng-model="pesquisar"> <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-primary">Pesquisar!</button> </span></div>
+                    </div>
+                </div>
+                <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -48,6 +51,7 @@
                         <th>Propina</th>
                         <th>Nº PMI</th>
                         <th>Morada</th>
+                        <th style="text-align:center;">Monitorizar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,6 +62,11 @@
                         <td>{{crianca.propina}}</td>
                         <td>{{crianca.numeroPMI}}</td>
                         <td>{{crianca.morada}}</td>
+                        <td style="text-align:center;"> 
+                            <a href="#/criancas-details"><button type="button" class="btn btn-white btn-sm" style="color:green;" ng-click="ver(crianca)"><i class="fa fa-eye"></i>Ver</button></a>
+                            <button type="button" class="btn btn-white btn-sm" style="color:blue;" ng-click="editar(crianca)" data-toggle="modal" data-target="#modalRegistarCrianca"><i class="fa fa-pencil"></i>Editar</button>
+                            <button type="button" class="btn btn-white btn-sm" style="color:red;" ng-click="eliminarCrianca(crianca)" data-toggle="modal" data-target="#myModal4"><i class="fa fa-times"></i>Eliminar</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -75,19 +84,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">{{tittle_modal}}</h4>
+                <h4 class="modal-title">{{popupTittle}}</h4>
             </div>
             <div class="modal-body" style="background-color:#fff;">
              	<div class="ibox-content">
                     <form class="form-horizontal" id="form_crianca">
                         <div class="form-group"><label class="col-lg-3 control-label">Nome</label>
                             <div class="col-lg-9">
-                            	<input type="nome" placeholder="Nome" class="form-control" ng-model="crianca.nome"> 
+                            	<input type="text" placeholder="Nome" class="form-control" ng-model="crianca.nome"> 
                             </div>
                         </div>
                         <div class="form-group"><label class="col-lg-3 control-label">Sexo</label>
                             <div class="col-lg-9">
-	                            <select data-placeholder="Choose a Country..." class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.sexo">
+	                            <select class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.sexo">
 					                <option value=""></option>
 					                <option value="Masculino">Masculino</option>
 					                <option value="Feminino">Feminino</option>
@@ -95,7 +104,7 @@
 					        </div>
                         </div>
                        	<div class="form-group"><label class="col-lg-3 control-label">Data Nascimento</label>
-                            <div class="col-lg-9"><input type="date" class="form-control" placeholder="Data Nascimento" ng-model="crianca.dataNascimento"></div>
+                            <div class="col-lg-9"><input type="date" class="form-control" placeholder="Data Nascimento" ng-model="crianca.dataNascimento" id="criancadataNascimento"></div>
                         </div>
                         <div class="form-group"><label class="col-lg-3 control-label">Idade</label>
                             <div class="col-lg-9"><input type="number" placeholder="Idade" readonly="" class="form-control" ng-model="crianca.idade"></div>
@@ -120,7 +129,7 @@
                         </div>
                         <div class="form-group"><label class="col-lg-3 control-label">Morada</label>
                             <div class="col-lg-9">
-                                <select data-placeholder="Choose a Country..." class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.morada">
+                                <select  class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.morada">
                                     <option value=""></option>
                                     <option value="Palmarejo">Palmarejo</option>
                                 </select>
@@ -131,7 +140,7 @@
                         </div>
                         <div class="form-group"><label class="col-lg-3 control-label">Estado</label>
                             <div class="col-lg-9">
-                                <select data-placeholder="Choose a Country..." class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.estado">
+                                <select class="chosen-select" style="width:350px; height:30px;" tabindex="2" ng-model="crianca.estado">
                                     <option value=""></option>
                                     <option value="Matriculado">Matriculado</option>
                                     <option value="Desistiu">Desistiu</option>
@@ -145,7 +154,28 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="cancelarCrianca()">Cancelar</button>
-                <button type="button" class="btn btn-primary" ng-click="criarCrianca(crianca)">Guardar</button>
+                <button type="button" class="btn btn-primary" ng-click="criarCrianca(crianca)" ng-show="sizeCrianca.length==0">Registar</button>
+                <button type="button" class="btn btn-primary" ng-click="editarCrianca(crianca)" ng-show="sizeCrianca.length>0" >Editar</button>
+                <button type="button" class="btn btn-danger"  ng-click="eliminarCrianca(crianca)" ng-show="sizeCrianca.length>0" data-toggle="modal" data-target="#myModal4"><span>Eliminar</span></button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top:25vh;">
+    <div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+               <h4>Eliminar Criança</h4>
+            </div>
+            <div class="modal-body">
+                Desejas eliminar a Criança?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary">Sim</button>
             </div>
         </div>
     </div>

@@ -5,7 +5,8 @@
 		
 		$hostname 	=	'localhost';
 		$username	=	'root';
-		$password	=	'b3nl1t3ch18';
+		//$password	=	'b3nl1t3ch18';
+		$password	=	'';
 		$dbname   	=	'encanto';
 
 		$connection = mysqli_connect($hostname,$username,$password,$dbname) or die(mysql_error("erro de conexao"));

@@ -21,7 +21,7 @@
 				echo json_encode($data);
 			}else{
 				
-				$select_all=$db->query("SELECT  * FROM criancas ORDER BY nome ASC;");
+				$select_all=$db->query("SELECT  * FROM criancas where estado ='Matriculado' ORDER BY nome ASC;");
 
 				$criancas = []; 
 
@@ -65,24 +65,32 @@
 			echo json_encode($crianca);
 		break;
 		case 'PUT':			
-			$funcionario= json_decode(file_get_contents("php://input"), true);
-			$id_funcionario 	= $funcionario['id_funcionario'];
-			$nome_funcionario	= $funcionario['nome_funcionario'];
-			$codigo_funcionario	= $funcionario['codigo_funcionario'];
-			$funcao_funcionario	= $funcionario['funcao_funcionario'];
-			$contato_funcionario= @$funcionario['contato_funcionario'];
-			$email_funcionario	= @$funcionario['email_funcionario'];
-			$hora_trab_diaria	= @$funcionario['hora_trab_diaria'];
-			$id_horario			= @$funcionario['id_horario'];
+			$crianca = json_decode(file_get_contents("php://input"), true);
+			$id							= 	@$crianca['id'];
+			$nome						= 	@$crianca['nome'];
+			$sexo						= 	@$crianca['sexo'];
+			$dataNascimento				= 	@$crianca['dataNascimento'];
+			$idade						= 	'0';
+			$alcunha					= 	@$crianca['alcunha'];
+			$numeroPMI					= 	@$crianca['numeroPMI'];
+			$propina					= 	@$crianca['propina'];
+			$nomePai					= 	@$crianca['nomePai'];
+			$nomeMae					= 	@$crianca['nomeMae'];
+			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
+			$morada						= 	@$crianca['morada'];
+			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
+			$estado						= 	@$crianca['estado'];
 
-			$insert_employee=$db->query("UPDATE funcionarios set nome_funcionario='$nome_funcionario',codigo_funcionario='$codigo_funcionario',
-										 funcao_funcionario='$funcao_funcionario',contato_funcionario='$contato_funcionario',
-										 email_funcionario='$email_funcionario',hora_trab_diaria='$hora_trab_diaria',id_horario='$id_horario'
-										 where id_funcionario='$id_funcionario ';")
+			$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
+										 dataNascimento='$dataNascimento',alcunha='$alcunha',
+										 numeroPMI='$numeroPMI',propina='$propina',nomePai='$nomePai',nomeMae='$nomeMae',
+										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='$dataInicioJardim',
+										 estado='$estado'
+										 where id='$id';")
 							 			or die(mysqli_error($db));
 			/*$id_funcionario=mysqli_insert_id($db);
 			$funcionario["id_funcionario"] = $id_funcionario;*/
-			echo json_encode("so la");
+			echo json_encode("success");
 		break;		
 		default:			
 			echo json_decode(["erro"=>"404"]);	

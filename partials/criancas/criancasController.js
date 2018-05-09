@@ -1,6 +1,33 @@
 angular.module("app")
 	.controller("criancasController",function($scope,$http,ModelUrl){
 
+		$('#loading-example-btn').click(function () {
+                
+            btn = $(this);
+            simpleLoad(btn, true)
+
+            // Ajax example
+//                $.ajax().always(function () {
+//                    simpleLoad($(this), false)
+//                });
+
+            simpleLoad(btn, false)
+        });
+  
+		function simpleLoad(btn, state) {
+            if (state) {
+                btn.children().addClass('fa-spin');
+                btn.contents().last().replaceWith(" actualizando");
+            } else {
+                setTimeout(function () {
+                    btn.children().removeClass('fa-spin');
+                    btn.contents().last().replaceWith(" Actualizar");
+                }, 2000);
+            }
+        }
+
+        $scope.popupTittle=" ";
+
 		$scope.tittle = "Crianças Jardim Encanto";
 		$scope.tittle_modal="Registar Criança";
 
@@ -27,24 +54,29 @@ angular.module("app")
 
 		//$scope.getFuncionario();
 
-		$scope.ola = function(){
-			console.log("ola");
-		}
 		
+		$scope.botaoRegistarCrianca = function(){
+			$scope.popupTittle=" Registar Criança "; 	
+			$scope.sizeCrianca = [];
+			$("#form_crianca").trigger("reset");
+		}
 
 		$scope.criarCrianca = function(crianca){
-			//console.log(crianca);
-			$http({
-				method:"POST",
-				url:url,
-				data:$scope.crianca,
-			}).then(function(response){
-				$scope.getallCrianca();
-				/*var datas = response.data;	
-				console.log("sexo " + datas.sexo);	*/
-				$("#form_crianca").trigger("reset");
-				$("#modalRegistarCrianca").modal("hide");		
-			});
+			
+				
+				//console.log(crianca);
+				$http({
+					method:"POST",
+					url:url,
+					data:$scope.crianca,
+				}).then(function(response){
+					$scope.getallCrianca();
+					/*var datas = response.data;	
+					console.log("sexo " + datas.sexo);	*/
+					$("#form_crianca").trigger("reset");
+					$("#modalRegistarCrianca").modal("hide");		
+				});
+			
 
 		}
 
@@ -59,9 +91,65 @@ angular.module("app")
 			}).error(function(response){
 				console.log(response);
 			});
+
+		}
+		$scope.getallCrianca();
+
+		$scope.ver = function(crianca){
+			console.log(crianca["nome"]);
+		};
+
+		function calculateCriancaAge(dataNascimento){
+			var anoNacimento = parseInt(dataNascimento.getFullYear());
+			var correntDate = new Date();
+			//var correntDay = parseInt(correntDate.getFullDay())
+			var correnteYear = parseInt(correntDate.getFullYear());
+			var mesDataNascimento = parseInt((dataNascimento.getMonth()+1)); //getMonth - Obtém o número do mês. Retornando um valor entre 0 e 11. ( janeiro=0)
+			var correnteMonth = parseInt(correntDate.getMonth()+1);
+			if(correnteMonth<mesDataNascimento){
+				var ageCrianca = correnteYear-anoNacimento;
+				return ageCrianca-1;
+			}else{
+				var ageCrianca = correnteYear-anoNacimento;
+				return ageCrianca;
+			}
+			
 		}
 
+		$("#criancadataNascimento").on("change",function(){
+			$scope.crianca.idade=calculateCriancaAge($scope.crianca.dataNascimento);
 
-		$scope.getallCrianca();
+		});
+
+		$scope.editar = function(crianca){
+			$scope.popupTittle=" Editar Criança ";
+			var editCrianca = crianca;
+			editCrianca.dataNascimento = new Date(crianca.dataNascimento);
+			editCrianca.idade = parseInt(crianca.idade);
+			editCrianca.propina = parseInt(crianca.propina);
+			editCrianca.dataInicioJardim = new Date(crianca.dataInicioJardim);
+			editCrianca.idade=calculateCriancaAge(editCrianca.dataNascimento);
+			$scope.crianca=editCrianca;
+			$scope.sizeCrianca = [];
+			$scope.sizeCrianca.push(crianca);
+		}
+
+		$scope.editarCrianca = function(crianca){
+			$http({
+				method:"PUT",
+				url:url,
+				data:crianca,
+			}).then(function(response){
+				console.log(response.data);	
+				$scope.getallCrianca();
+				$("#modalRegistarCrianca").modal("hide");
+				window.location.href="#/criancas";
+			});
+		}
+
+		$scope.eliminarCrianca = function(){
+			console.log("eliminar");
+
+		}
 
 	});
