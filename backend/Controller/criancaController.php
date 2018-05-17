@@ -58,7 +58,7 @@
 																  idade,alcunha,numeroPMI,propina,
 																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
 								values('$nome','$sexo','$dataNascimento',
-									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');") 
+									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');"); 
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
