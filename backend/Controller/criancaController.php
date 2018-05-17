@@ -53,7 +53,9 @@
 			$nomeMae					= 	@$crianca['nomeMae'];
 			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
 			$morada						= 	@$crianca['morada'];
-			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
+			$dataInicioJardimForm     	= 	@$crianca['dataInicioJardim'];
+			$ExplodedataInicioJardim 	= 	explode("T", $dataInicioJardimForm);
+			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
 			$estado						= 	@$crianca['estado'];
 
 			/*$sql = "INSERT INTO criancas (nome, sexo, dataNascimento, estado) VALUES ('$nome', '$sexo', '$dataNascimento', '$estado')";
@@ -67,7 +69,7 @@
 																  idade,alcunha,numeroPMI,propina,
 																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
 								values('$nome','$sexo','$dataNascimento',
-									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','2018-03-12','$estado');") 
+									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');") 
 							or die(mysqli_error($db));
 			/*$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;*/
@@ -78,7 +80,9 @@
 			$id							= 	@$crianca['id'];
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
-			$dataNascimento				= 	@$crianca['dataNascimento'];
+			$dataNascimentoForm     	= 	@$crianca['dataNascimento'];
+			$ExplodedataNascimento 		= 	explode("T", $dataNascimentoForm);
+			$dataNascimento				= 	$ExplodedataNascimento[0];
 			$idade						= 	'0';
 			$alcunha					= 	@$crianca['alcunha'];
 			$numeroPMI					= 	@$crianca['numeroPMI'];
@@ -87,13 +91,15 @@
 			$nomeMae					= 	@$crianca['nomeMae'];
 			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
 			$morada						= 	@$crianca['morada'];
-			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
+			$dataInicioJardimForm     	= 	@$crianca['dataInicioJardim'];
+			$ExplodedataInicioJardim 	= 	explode("T", $dataInicioJardimForm);
+			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
 			$estado						= 	@$crianca['estado'];
 
 			$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
-										 dataNascimento='2018-07-17',alcunha='$alcunha',
+										 dataNascimento='$dataNascimento',alcunha='$alcunha',
 										 numeroPMI='$numeroPMI',propina='$propina',nomePai='$nomePai',nomeMae='$nomeMae',
-										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='2018-07-17',
+										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='$dataInicioJardim',
 										 estado='$estado'
 										 where id='$id';")
 							 			or die(mysqli_error($db));
