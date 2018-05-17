@@ -54,7 +54,7 @@
 			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
 			$estado						= 	@$crianca['estado'];
 
-			$insert_crianca = $db->query("INSERT INTO criancas(nome,sexo,dataNascimento,
+			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,propina,
 																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
 								values('$nome','$sexo','$dataNascimento',
@@ -81,7 +81,7 @@
 			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
 			$estado						= 	@$crianca['estado'];
 
-			$update_crianca=$db->query("UPDATE criancas SET nome='$nome',sexo='$sexo',
+			$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
 										 dataNascimento='$dataNascimento',alcunha='$alcunha',
 										 numeroPMI='$numeroPMI',propina='$propina',nomePai='$nomePai',nomeMae='$nomeMae',
 										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='$dataInicioJardim',
