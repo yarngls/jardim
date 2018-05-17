@@ -71,7 +71,7 @@
 			$crianca["id"] = $id_crianca;*/
 			echo json_encode($crianca);
 		break;
-		/*case 'PUT':			
+		case 'PUT':			
 			$crianca = json_decode(file_get_contents("php://input"), true);
 			$id							= 	@$crianca['id'];
 			$nome						= 	@$crianca['nome'];
@@ -89,16 +89,16 @@
 			$estado						= 	@$crianca['estado'];
 
 			$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
-										 dataNascimento='$dataNascimento',alcunha='$alcunha',
+										 dataNascimento='2018-07-17',alcunha='$alcunha',
 										 numeroPMI='$numeroPMI',propina='$propina',nomePai='$nomePai',nomeMae='$nomeMae',
-										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='$dataInicioJardim',
+										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='2018-07-17',
 										 estado='$estado'
 										 where id='$id';")
-							 			or die(mysqli_error($db));*/
+							 			or die(mysqli_error($db));
 			/*$id_funcionario=mysqli_insert_id($db);
 			$funcionario["id_funcionario"] = $id_funcionario;*/
-			/*echo json_encode("success");
-		break;	*/	
+			echo json_encode("success");
+		break;		
 		default:			
 			echo json_decode(["erro"=>"404"]);	
 		break;
