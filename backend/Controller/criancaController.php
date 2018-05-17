@@ -42,6 +42,7 @@
 			$crianca = json_decode(file_get_contents("php://input"), true);
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
+			//$dataNascimento				= 	explode("",@$crianca['dataNascimento']));
 			$dataNascimento				= 	@$crianca['dataNascimento'];
 			$idade						= 	@$crianca['idade'];
 			$alcunha					= 	@$crianca['alcunha'];
