@@ -38,7 +38,7 @@
 
 			}
 		break;
-		/*case 'POST':
+		case 'POST':
 			$crianca = json_decode(file_get_contents("php://input"), true);
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
@@ -64,7 +64,7 @@
 			$crianca["id"] = $id_crianca;
 			echo json_encode($crianca);
 		break;
-		case 'PUT':			
+		/*case 'PUT':			
 			$crianca = json_decode(file_get_contents("php://input"), true);
 			$id							= 	@$crianca['id'];
 			$nome						= 	@$crianca['nome'];
