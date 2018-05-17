@@ -54,7 +54,7 @@
 			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
 			$estado						= 	@$crianca['estado'];
 
-			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
+			/*$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,propina,
 																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
 								values('$nome','$sexo','$dataNascimento',
@@ -62,7 +62,7 @@
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
-			echo json_encode($crianca);
+			echo json_encode($crianca);*/
 		break;
 		/*case 'PUT':			
 			$crianca = json_decode(file_get_contents("php://input"), true);
