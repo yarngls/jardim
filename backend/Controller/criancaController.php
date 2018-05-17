@@ -54,11 +54,9 @@
 			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
 			$estado						= 	@$crianca['estado'];
 
-			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
-																  idade,alcunha,numeroPMI,propina,
-																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
-								values('$nome','$sexo','$dataNascimento',
-									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');"); 
+			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,estado)
+								values('Jose Afonso','Masculino','2015-07-23',
+									   'Matriculado');"); 
 							or die(mysqli_error($db));
 			/*$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
