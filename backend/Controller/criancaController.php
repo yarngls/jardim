@@ -64,8 +64,8 @@
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,propina,
 																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
-								values('$nome','$sexo','$dataNascimento',
-									   '10','alcunha','numeroPMI','2400','nomePai','nomeMae','encaregadoEducacao','morada','2018-03-12','Matriculado');") 
+								values('$nome','$sexo','2018-03-12',
+									   '$idade','$alcunha','numeroPMI','2400','nomePai','nomeMae','encaregadoEducacao','morada','2018-03-12','Matriculado');") 
 							or die(mysqli_error($db));
 			/*$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;*/
