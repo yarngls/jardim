@@ -38,7 +38,7 @@
 
 			}
 		break;
-		case 'POST':
+		/*case 'POST':
 			$crianca = json_decode(file_get_contents("php://input"), true);
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
@@ -87,11 +87,11 @@
 										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='$dataInicioJardim',
 										 estado='$estado'
 										 where id='$id';")
-							 			or die(mysqli_error($db));
+							 			or die(mysqli_error($db));*/
 			/*$id_funcionario=mysqli_insert_id($db);
 			$funcionario["id_funcionario"] = $id_funcionario;*/
-			echo json_encode("success");
-		break;		
+			/*echo json_encode("success");
+		break;	*/	
 		default:			
 			echo json_decode(["erro"=>"404"]);	
 		break;
