@@ -65,7 +65,7 @@
 																  idade,alcunha,numeroPMI,propina,
 																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
 								values('$nome','$sexo','2018-03-12',
-									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');") 
+									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','2018-03-12','$estado');") 
 							or die(mysqli_error($db));
 			/*$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;*/
