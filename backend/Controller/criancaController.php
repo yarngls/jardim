@@ -39,10 +39,13 @@
 			}
 		break;
 		case 'POST':
-			$crianca = json_decode(file_get_contents("php://input"), true);
-			$nome						= 	@$crianca['nome'];
-			$sexo						= 	@$crianca['sexo'];
-			$dataNascimento				= 	@$crianca['dataNascimento'];
+			//$crianca = json_decode(file_get_contents("php://input"), true);mysqli_real_escape_string($link, $_REQUEST['first_name']);
+			$nome						= 	mysqli_real_escape_string($link, $_REQUEST['nome']);
+			$dataNascimento				= 	mysqli_real_escape_string($link, $_REQUEST['dataNascimento']);
+			$sexo						= 	mysqli_real_escape_string($link, $_REQUEST['sexo']);
+			$estado						= 	mysqli_real_escape_string($link, $_REQUEST['estado']);
+			
+			/*$dataNascimento				= 	@$crianca['dataNascimento'];
 			$idade						= 	@$crianca['idade'];
 			$alcunha					= 	@$crianca['alcunha'];
 			$numeroPMI					= 	@$crianca['numeroPMI'];
@@ -51,8 +54,7 @@
 			$nomeMae					= 	@$crianca['nomeMae'];
 			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
 			$morada						= 	@$crianca['morada'];
-			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
-			$estado						= 	@$crianca['estado'];
+			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];*/
 
 			$sql = "INSERT INTO criancas (nome, sexo, dataNascimento, estado) VALUES ('$nome', '$sexo', '$dataNascimento', '$estado')";
 			if(mysqli_query($db, $sql)){
