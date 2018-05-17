@@ -54,10 +54,20 @@
 			$dataInicioJardim			= 	@$crianca['dataInicioJardim'];
 			$estado						= 	@$crianca['estado'];
 
-			$insert_crianca = $db->query('INSERT into criancas(nome,sexo,dataNascimento,estado)
-								values("$nome","$sexo","$dataNascimento","$estado");') 
+			$sql = "INSERT INTO criancas (nome, sexo, dataNascimento, estado) VALUES ('$nome', '$sexo', '$dataNascimento', '$estado')";
+			if(mysqli_query($db, $sql)){
+			    echo "Records added successfully.";
+			} else{
+			    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}			}
+
+			/*$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
+																  idade,alcunha,numeroPMI,propina,
+																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
+								values('$nome','$sexo','$dataNascimento',
+									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');"); 
 							or die(mysqli_error($db));
-			/*$id_crianca=mysqli_insert_id($db);
+			$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
 			echo json_encode($crianca);*/
 		break;
