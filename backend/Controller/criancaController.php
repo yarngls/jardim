@@ -61,13 +61,13 @@
 			    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }			}*/
 
-			/*$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
+			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,propina,
 																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
 								values('$nome','$sexo','$dataNascimento',
-									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');"); 
+									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');") 
 							or die(mysqli_error($db));
-			$id_crianca=mysqli_insert_id($db);
+			/*$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;*/
 			echo json_encode($crianca);
 		break;
