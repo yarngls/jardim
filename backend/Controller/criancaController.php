@@ -56,9 +56,9 @@
 
 			$sql = "INSERT INTO criancas (nome, sexo, dataNascimento, estado) VALUES ('$nome', '$sexo', '$dataNascimento', '$estado')";
 			if(mysqli_query($db, $sql)){
-			    echo "Records added successfully.";
+			   echo json_encode($crianca);
 			} else{
-			    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+			    echo json_decode(["erro"=>"ERROR: Could not able to execute $sql"]);
 }			}
 
 			/*$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
