@@ -103,7 +103,6 @@ angular.module("app")
 		}
 
 		$scope.criarCrianca = function(crianca){
-			
 				
 				//console.log(crianca);
 				$http({
@@ -111,13 +110,13 @@ angular.module("app")
 					url:url,
 					data:$scope.crianca,
 				}).then(function(response){
+					console.log("resposta" + response.data);
 					$scope.getallCrianca();
 					/*var datas = response.data;	
 					console.log("sexo " + datas.sexo);	*/
 					$("#form_crianca").trigger("reset");
 					$("#modalRegistarCrianca").modal("hide");		
 				});
-			
 
 		}
 
@@ -128,7 +127,7 @@ angular.module("app")
 		$scope.getallCrianca=function(){
 			$http.get(url).success(function(data,status){
 				$scope.criancas=data;
-				console.log(data);
+				//console.log(data);
 			}).error(function(response){
 				console.log(response);
 			});

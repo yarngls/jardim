@@ -58,12 +58,40 @@
 			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
 			$estado						= 	@$crianca['estado'];
 
+			$nomePai					=	@$crianca['nomePai'];
+			$profissaoPai				=	@$crianca['profissaoPai'];
+			$telefonePai				=	@$crianca['telefonePai'];
+			$movelPai					=	@$crianca['movelPai'];
+			$moradaPai					=	@$crianca['moradaPai'];
+			$alcunhaPai					=	@$crianca['alcunhaPai'];
+
+			$nomeMae					=	@$crianca['nomeMae'];
+			$profissaoMae				=	@$crianca['profissaoMae'];
+			$telefoneMae				=	@$crianca['telefoneMae'];
+			$movelMae					=	@$crianca['movelMae'];
+			$moradaMae					=	@$crianca['moradaMae'];
+			$alcunhaMae					=	@$crianca['alcunhaMae'];
+
 			/*$sql = "INSERT INTO criancas (nome, sexo, dataNascimento, estado) VALUES ('$nome', '$sexo', '$dataNascimento', '$estado')";
 			if(mysqli_query($link, $sql)){
 			    echo "Records added successfully.";
 			} else{
 			    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }			}*/
+			
+
+			/*$insert_pai = $db->query("INSERT into pai(nomePai,profissaoPai,telefonePai,
+																  movelPai,moradaPai,alcunhaPai)
+								values('$nomePai','$profissaoPai','$telefonePai',
+									   '$movelPai','$moradaPai','$alcunhaPai');") 
+							or die(mysqli_error($db));
+
+			$insert_pai = $db->query("INSERT into mae(nomeMae,profissaoMae,telefoneMae,
+																  movelMae,moradaMae,numeroPMI,alcunhaPai)
+								values('$nomePai','$profissaoPai','$telefonePai',
+									   '$movelPai','$moradaPai','$numeroPMI','$numeroPMI','$alcunhaPai');") 
+							or die(mysqli_error($db));*/
+
 
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,propina,
@@ -71,9 +99,9 @@
 								values('$nome','$sexo','$dataNascimento',
 									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');") 
 							or die(mysqli_error($db));
-			/*$id_crianca=mysqli_insert_id($db);
-			$crianca["id"] = $id_crianca;*/
-			echo json_encode($crianca);
+			$id_crianca=mysqli_insert_id($db);
+			$crianca["id"] = $id_crianca;
+			echo json_encode($id_crianca);
 		break;
 		case 'PUT':			
 			$crianca = json_decode(file_get_contents("php://input"), true);
