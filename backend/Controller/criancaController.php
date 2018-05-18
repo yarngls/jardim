@@ -14,15 +14,16 @@
 			if(isset($_GET["id"])){
 				//transportar_dados_morpho();
 				$id = $_GET["id"];					
-				$select_all=$db->query("SELECT * FROM funcionarios where id_funcionario='$id';");
+				$select_all=$db->query("SELECT * FROM criancas c, pai p,mae m where 'c.id'='665' and 'c.idPai'='p.id' and 'c.idMae'='m.id';");
 
 				$data = mysqli_fetch_assoc($select_all);
 
 				echo json_encode($data);
 			}else{
-				
-				$select_all=$db->query("SELECT  * FROM criancas where estado ='Matriculado' ORDER BY nome ASC;");
 
+				$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where c.idPai=p.id and c.idMae=m.id order by C.nome;");
+
+				$idcriancas = []; 
 				$criancas = []; 
 
 				while ($data = mysqli_fetch_assoc($select_all))
@@ -33,7 +34,6 @@
 					}*/
 					$criancas[] = $data;
 				}
-
 				echo json_encode($criancas);
 
 			}
@@ -72,36 +72,34 @@
 			$moradaMae					=	@$crianca['moradaMae'];
 			$alcunhaMae					=	@$crianca['alcunhaMae'];
 
-			/*$sql = "INSERT INTO criancas (nome, sexo, dataNascimento, estado) VALUES ('$nome', '$sexo', '$dataNascimento', '$estado')";
-			if(mysqli_query($link, $sql)){
-			    echo "Records added successfully.";
-			} else{
-			    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}			}*/
-			
 
-			/*$insert_pai = $db->query("INSERT into pai(nomePai,profissaoPai,telefonePai,
+			$insert_pai = $db->query("INSERT into pai(nomePai,profissaoPai,telefonePai,
 																  movelPai,moradaPai,alcunhaPai)
 								values('$nomePai','$profissaoPai','$telefonePai',
 									   '$movelPai','$moradaPai','$alcunhaPai');") 
 							or die(mysqli_error($db));
+			$idPai=mysqli_insert_id($db);
 
-			$insert_pai = $db->query("INSERT into mae(nomeMae,profissaoMae,telefoneMae,
-																  movelMae,moradaMae,numeroPMI,alcunhaPai)
-								values('$nomePai','$profissaoPai','$telefonePai',
-									   '$movelPai','$moradaPai','$numeroPMI','$numeroPMI','$alcunhaPai');") 
-							or die(mysqli_error($db));*/
+
+			$insert_mae = $db->query("INSERT into mae(nomeMae,profissaoMae,telefoneMae,
+																  movelMae,moradaMae,alcunhaMae)
+								values('$nomeMae','$profissaoMae','$telefoneMae',
+									   '$movelMae','$moradaMae','$alcunhaMae');") 
+							or die(mysqli_error($db));
+			$idMae=mysqli_insert_id($db);
 
 
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,propina,
-																  nomePai,nomeMae,encaregadoEducacao,morada,dataInicioJardim,estado)
+																  morada,dataInicioJardim,estado,idPai,idMae)
 								values('$nome','$sexo','$dataNascimento',
-									   '$idade','$alcunha','$numeroPMI','$propina','$nomePai','$nomeMae','$encaregadoEducacao','$morada','$dataInicioJardim','$estado');") 
+									   '$idade','$alcunha','$numeroPMI','$propina','$morada',
+									   '$dataInicioJardim','$estado','$idPai','$idMae');") 
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
 			echo json_encode($id_crianca);
+			
 		break;
 		case 'PUT':			
 			$crianca = json_decode(file_get_contents("php://input"), true);
