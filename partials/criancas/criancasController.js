@@ -14,6 +14,7 @@ angular.module("app")
             simpleLoad(btn, false)
         });
 
+		
 		$("#profileImage").click(function(e) {
 		    $("#imageUpload").click();
 		});
@@ -241,14 +242,29 @@ angular.module("app")
 				url:url,
 				data:crianca,
 			}).then(function(response){
+				console.log(response.data);
 				$scope.getallCrianca();
 				$("#modalRegistarCrianca").modal("hide");
 				window.location.href="#/criancas";
 			});
 		}
 
-		$scope.eliminarCrianca = function(){
-			console.log("eliminar");
+		$scope.eliminarCrianca = function(idCrianca){
+
+			$scope.confirmar = function(){				
+				var condicao = 'eliminar';
+				console.log(idCrianca);
+				$http({
+					method:"PUT",
+					url:url,
+					data:{condicao,idCrianca},
+				}).then(function(response){
+					console.log(response.data);
+					$scope.getallCrianca();
+					$("#myModalEliminar").modal("hide");
+					window.location.href="#/criancas";
+				});
+			}
 
 		}
 

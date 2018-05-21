@@ -59,13 +59,13 @@
                         <td>{{crianca.nome}}</small></td>
                         <td>{{crianca.sexo}}</td>
                         <td>{{crianca.alcunha}}</td>
-                        <td>{{crianca.propina}}</td>
+                        <td>{{crianca.propina}}$00</td>
                         <td>{{crianca.numeroPMI}}</td>
                         <td>{{crianca.morada}}</td>
                         <td style="text-align:center;"> 
                             <a href="#/criancas-details"><button type="button" class="btn btn-white btn-sm" style="color:green;" ng-click="ver(crianca)"><i class="fa fa-eye"></i>Ver</button></a>
                             <button type="button" class="btn btn-white btn-sm" style="color:blue;" ng-click="editar(crianca)" data-toggle="modal" data-target="#modalRegistarCrianca"><i class="fa fa-pencil"></i>Editar</button>
-                            <button type="button" class="btn btn-white btn-sm" style="color:red;" ng-click="eliminarCrianca(crianca)" data-toggle="modal" data-target="#myModal4"><i class="fa fa-times"></i>Eliminar</button>
+                            <button type="button" class="btn btn-white btn-sm" style="color:red;" ng-click="eliminarCrianca(crianca.idCrianca)" data-toggle="modal" data-target="#myModalEliminar"><i class="fa fa-times"></i>Eliminar</button>
                         </td>
                     </tr>
                     </tbody>
@@ -231,7 +231,7 @@
                             <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="cancelarCrianca()">Cancelar</button>
                             <button type="button" class="btn btn-primary" ng-click="criarCrianca(crianca)" ng-show="sizeCrianca.length==0" ng-disabled="form_crianca.$invalid">Registar</button>
                             <button type="button" class="btn btn-primary" ng-click="editarCrianca(crianca)" ng-show="sizeCrianca.length>0" >Editar</button>
-                            <button type="button" class="btn btn-danger"  ng-click="eliminarCrianca(crianca)" ng-show="sizeCrianca.length>0" data-toggle="modal" data-target="#myModal4"><span>Eliminar</span></button>
+                            <button type="button" class="btn btn-danger"  ng-click="eliminarCrianca(crianca.idCrianca)" ng-show="sizeCrianca.length>0" data-toggle="modal" data-target="#myModalEliminar"><span>Eliminar</span></button>
                             
                         </div>
                     </form>
@@ -241,7 +241,7 @@
     </div>
 </div>
 
-<div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top:25vh;">
+<div class="modal inmodal" id="myModalEliminar" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top:25vh;">
     <div class="modal-dialog">
     <div class="modal-content animated bounceInRight">
             <div class="modal-header">
@@ -253,7 +253,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">Não</button>
-                <button type="button" class="btn btn-primary">Sim</button>
+                <button type="button" class="btn btn-primary" ng-click="confirmar()">Sim</button>
             </div>
         </div>
     </div>

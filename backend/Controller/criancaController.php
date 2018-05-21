@@ -24,7 +24,7 @@
 				echo json_encode($localidades);
 			}else{
 
-				$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae order by C.nome;");
+				$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae and C.estado!='Suspenso'order by C.nome;");
 				//$select_all=$db->query("SELECT * FROM criancas order by nome;");
 
 				$criancas = []; 
@@ -116,76 +116,87 @@
 			//echo json_encode("success");
 		break;
 		case 'PUT':			
-			$crianca = json_decode(file_get_contents("php://input"), true);
-			$idCrianca					= 	@$crianca['idCrianca'];
-			$nome						= 	@$crianca['nome'];
-			$sexo						= 	@$crianca['sexo'];
-			$dataNascimentoForm     	= 	@$crianca['dataNascimento'];
-			$ExplodedataNascimento 		= 	explode("T", $dataNascimentoForm);
-			$dataNascimento				= 	$ExplodedataNascimento[0];
-			$idade						= 	@$crianca['idade'];
-			$alcunha					= 	@$crianca['alcunha'];
-			$numeroPMI					= 	@$crianca['numeroPMI'];
-			
-			$periodoManha				= 	@$crianca['periodoManha'];
-			$periodoTarde				= 	@$crianca['periodoTarde'];
-			$diaInteiro					= 	@$crianca['diaInteiro'];
-			
-			$propina					= 	@$crianca['propina'];
-			
-			$linguaFrancesa				= 	@$crianca['linguaFrancesa'];
-			$linguaInglesa				= 	@$crianca['linguaInglesa'];
+			$request = json_decode(file_get_contents("php://input"), true);
 
-			$almoco						= 	@$crianca['almoco'];
-			
-			$nomePai					= 	@$crianca['nomePai'];
-			$nomeMae					= 	@$crianca['nomeMae'];
-			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
-			$morada						= 	@$crianca['morada'];
-			$dataInicioJardimForm     	= 	@$crianca['dataInicioJardim'];
-			$ExplodedataInicioJardim 	= 	explode("T", $dataInicioJardimForm);
-			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
-			$estado						= 	@$crianca['estado'];
+			if(isset($request["condicao"]) && $request["condicao"]=="eliminar"){
+				$idCrianca = $request["idCrianca"];
+				$update_crianca=$db->query("UPDATE criancas set 
+											estado='Suspenso' where idCrianca='$idCrianca';")
+								 			or die(mysqli_error($db));
+				echo json_encode($request["condicao"]);
+			}else{
 
-			$idPai						= 	@$crianca['idPai'];
-			$nomePai					=	@$crianca['nomePai'];
-			$profissaoPai				=	@$crianca['profissaoPai'];
-			$telefonePai				=	@$crianca['telefonePai'];
-			$movelPai					=	@$crianca['movelPai'];
-			$moradaPai					=	@$crianca['moradaPai'];
-			$alcunhaPai					=	@$crianca['alcunhaPai'];
+				$idCrianca					= 	@$request['idCrianca'];
+				$nome						= 	@$request['nome'];
+				$sexo						= 	@$request['sexo'];
+				$dataNascimentoForm     	= 	@$request['dataNascimento'];
+				$ExplodedataNascimento 		= 	explode("T", $dataNascimentoForm);
+				$dataNascimento				= 	$ExplodedataNascimento[0];
+				$idade						= 	@$request['idade'];
+				$alcunha					= 	@$request['alcunha'];
+				$numeroPMI					= 	@$request['numeroPMI'];
+				
+				$periodoManha				= 	@$request['periodoManha'];
+				$periodoTarde				= 	@$request['periodoTarde'];
+				$diaInteiro					= 	@$request['diaInteiro'];
+				
+				$propina					= 	@$request['propina'];
+				
+				$linguaFrancesa				= 	@$request['linguaFrancesa'];
+				$linguaInglesa				= 	@$request['linguaInglesa'];
 
-			$idMae						= 	@$crianca['idMae'];
-			$nomeMae					=	@$crianca['nomeMae'];
-			$profissaoMae				=	@$crianca['profissaoMae'];
-			$telefoneMae				=	@$crianca['telefoneMae'];
-			$movelMae					=	@$crianca['movelMae'];
-			$moradaMae					=	@$crianca['moradaMae'];
-			$alcunhaMae					=	@$crianca['alcunhaMae'];
+				$almoco						= 	@$request['almoco'];
+				
+				$nomePai					= 	@$request['nomePai'];
+				$nomeMae					= 	@$request['nomeMae'];
+				$encaregadoEducacao			= 	@$request['encaregadoEducacao'];
+				$morada						= 	@$request['morada'];
+				$dataInicioJardimForm     	= 	@$request['dataInicioJardim'];
+				$ExplodedataInicioJardim 	= 	explode("T", $dataInicioJardimForm);
+				$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
+				$estado						= 	@$request['estado'];
+
+				$idPai						= 	@$request['idPai'];
+				$nomePai					=	@$request['nomePai'];
+				$profissaoPai				=	@$request['profissaoPai'];
+				$telefonePai				=	@$request['telefonePai'];
+				$movelPai					=	@$request['movelPai'];
+				$moradaPai					=	@$request['moradaPai'];
+				$alcunhaPai					=	@$request['alcunhaPai'];
+
+				$idMae						= 	@$request['idMae'];
+				$nomeMae					=	@$request['nomeMae'];
+				$profissaoMae				=	@$request['profissaoMae'];
+				$telefoneMae				=	@$request['telefoneMae'];
+				$movelMae					=	@$request['movelMae'];
+				$moradaMae					=	@$request['moradaMae'];
+				$alcunhaMae					=	@$request['alcunhaMae'];
 
 
-			$update_crianca=$db->query("UPDATE pai set nomePai='$nomePai',profissaoPai='$profissaoPai',
-										telefonePai='$telefonePai',movelPai='$movelPai',moradaPai='$moradaPai',
-										alcunhaPai='$alcunhaPai' where idPai='$idPai';")
-							 			or die(mysqli_error($db));
+				$update_crianca=$db->query("UPDATE pai set nomePai='$nomePai',profissaoPai='$profissaoPai',
+											telefonePai='$telefonePai',movelPai='$movelPai',moradaPai='$moradaPai',
+											alcunhaPai='$alcunhaPai' where idPai='$idPai';")
+								 			or die(mysqli_error($db));
 
-			$update_crianca=$db->query("UPDATE mae set nomeMae='$nomeMae',profissaoMae='$profissaoMae',
-										telefoneMae='$telefoneMae',movelMae='$movelMae',moradaMae='$moradaMae',
-										alcunhaMae='$alcunhaMae' where idMae='$idMae';")
-							 			or die(mysqli_error($db));				 			
+				$update_crianca=$db->query("UPDATE mae set nomeMae='$nomeMae',profissaoMae='$profissaoMae',
+											telefoneMae='$telefoneMae',movelMae='$movelMae',moradaMae='$moradaMae',
+											alcunhaMae='$alcunhaMae' where idMae='$idMae';")
+								 			or die(mysqli_error($db));				 			
 
-			$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
-										dataNascimento='$dataNascimento',alcunha='$alcunha',
-										numeroPMI='$numeroPMI',periodoManha='$periodoManha',
-										periodoTarde='$periodoTarde',diaInteiro='$diaInteiro',
-										propina='$propina',linguaFrancesa='$linguaFrancesa',
-										linguaInglesa='$linguaInglesa',almoco='$almoco',
-										morada='$morada',dataInicioJardim='$dataInicioJardim',
-										estado='$estado' where idCrianca='$idCrianca';")
-							 			or die(mysqli_error($db));
-			/*$id_funcionario=mysqli_insert_id($db);
-			$funcionario["id_funcionario"] = $id_funcionario;*/
-			echo json_encode("success");
+				$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
+											dataNascimento='$dataNascimento',alcunha='$alcunha',
+											numeroPMI='$numeroPMI',periodoManha='$periodoManha',
+											periodoTarde='$periodoTarde',diaInteiro='$diaInteiro',
+											propina='$propina',linguaFrancesa='$linguaFrancesa',
+											linguaInglesa='$linguaInglesa',almoco='$almoco',
+											morada='$morada',dataInicioJardim='$dataInicioJardim',
+											estado='$estado' where idCrianca='$idCrianca';")
+								 			or die(mysqli_error($db));
+				/*$id_funcionario=mysqli_insert_id($db);
+				$funcionario["id_funcionario"] = $id_funcionario;*/
+				echo json_encode("sucess");
+			}
+
 
 		break;		
 		default:			
