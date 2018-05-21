@@ -116,7 +116,7 @@
 			//echo json_encode("success");
 		break;
 		case 'PUT':			
-		/*	$crianca = json_decode(file_get_contents("php://input"), true);
+			$crianca = json_decode(file_get_contents("php://input"), true);
 			$idCrianca					= 	@$crianca['idCrianca'];
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
