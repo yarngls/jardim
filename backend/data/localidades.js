@@ -24,6 +24,7 @@ var localidades=[
 					"Ponta da Agua",
 					"Quebra Canela",
 					"Safende",
+					"São Francisco",
 					"Terra Branca",
 					"Tira Chapéu",
 					"Várzea"
