@@ -192,6 +192,7 @@ angular.module("app")
 			editCrianca.dataNascimento = new Date(crianca.dataNascimento);
 			editCrianca.idade = parseInt(crianca.idade);
 			editCrianca.propina = parseInt(crianca.propina);
+			editCrianca.almoco = parseInt(crianca.almoco);
 			editCrianca.dataInicioJardim = new Date(crianca.dataInicioJardim);
 			editCrianca.idade=calculateCriancaAge(editCrianca.dataNascimento);
 			
