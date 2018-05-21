@@ -111,8 +111,6 @@ angular.module("app")
 			}).then(function(response){
 				console.log("resposta" + response.data);
 			});*/
-
-
 		}
 
 		$scope.localidades = localidades;

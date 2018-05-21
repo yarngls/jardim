@@ -25,7 +25,7 @@
 			}else{
 
 				/*$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae order by C.nome;");*/
-				$select_all=$db->query("SELECT * FROM criancas where  order by nome;");
+				$select_all=$db->query("SELECT * FROM criancas order by nome;");
 
 				$criancas = []; 
 
