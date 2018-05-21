@@ -20,6 +20,7 @@ var localidades=[
 					"Palmarejo Grande-Monte Vermelho",
 					"Pensamento",
 					"Plateau",
+					"Praia Farmosa",
 					"Prainha",
 					"Ponta da Agua",
 					"Quebra Canela",
@@ -27,6 +28,7 @@ var localidades=[
 					"São Francisco",
 					"Terra Branca",
 					"Tira Chapéu",
-					"Várzea"
+					"Várzea",
+					"Vila Nova"
 
 				];
