@@ -147,6 +147,7 @@
 			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
 			$estado						= 	@$crianca['estado'];
 
+			$idPai						= 	@$crianca['idPai'];
 			$nomePai					=	@$crianca['nomePai'];
 			$profissaoPai				=	@$crianca['profissaoPai'];
 			$telefonePai				=	@$crianca['telefonePai'];
@@ -154,12 +155,24 @@
 			$moradaPai					=	@$crianca['moradaPai'];
 			$alcunhaPai					=	@$crianca['alcunhaPai'];
 
+			$idMae						= 	@$crianca['idMae'];
 			$nomeMae					=	@$crianca['nomeMae'];
 			$profissaoMae				=	@$crianca['profissaoMae'];
 			$telefoneMae				=	@$crianca['telefoneMae'];
 			$movelMae					=	@$crianca['movelMae'];
 			$moradaMae					=	@$crianca['moradaMae'];
 			$alcunhaMae					=	@$crianca['alcunhaMae'];
+
+
+			$update_crianca=$db->query("UPDATE pai set nomePai='$nomePai',profissaoPai='$profissaoPai',
+										telefonePai='$telefonePai',movelPai='$movelPai',moradaPai='$moradaPai',
+										alcunhaPai='$alcunhaPai' where idPai='$idPai';")
+							 			or die(mysqli_error($db));
+
+			$update_crianca=$db->query("UPDATE mae set nomeMae='$nomeMae',profissaoMae='$profissaoMae',
+										telefoneMae='$telefoneMae',movelMae='$movelMae',moradaMae='$moradaMae',
+										alcunhaMae='$alcunhaMae' where idMae='$idMae';")
+							 			or die(mysqli_error($db));				 			
 
 			$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
 										dataNascimento='$dataNascimento',alcunha='$alcunha',

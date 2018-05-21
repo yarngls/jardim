@@ -190,6 +190,7 @@ angular.module("app")
 		});
 
 		$scope.editar = function(crianca){
+
 			$scope.popupTittle=" Editar Criança ";
 			var editCrianca = crianca;
 			editCrianca.dataNascimento = new Date(crianca.dataNascimento);
@@ -229,7 +230,6 @@ angular.module("app")
 				editCrianca.diaInteiro=false;
 			}
 
-			
 			$scope.crianca=editCrianca;
 			$scope.sizeCrianca = [];
 			$scope.sizeCrianca.push(crianca);
