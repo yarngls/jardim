@@ -97,10 +97,37 @@ angular.module("app")
 
 		
 		$scope.botaoRegistarCrianca = function(){
+			delete $scope.crianca;
 			$scope.popupTittle=" Registar Criança "; 	
 			$scope.sizeCrianca = [];
 			$("#form_crianca").trigger("reset");
+			$("#form_pai").trigger("reset");
+			$("#form_mae").trigger("reset");
+
+			$http({
+				method:"Get",
+				url:url+"?estado='Localidades'",
+				data:"Localidades",
+			}).then(function(response){
+				console.log("resposta" + response.data);
+			});
+
+
 		}
+
+		$scope.localidades = localidades;
+		console.log("as localidades " + $scope.localidades);
+		/*function getLocalidade(){
+			$http({
+					method:"Get",
+					url:url,
+					data:"Localidades",
+				}).then(function(response){
+					console.log("resposta" + response.data);
+				});
+		}
+
+		getLocalidade();*/
 
 		$scope.criarCrianca = function(crianca){
 				
@@ -129,7 +156,7 @@ angular.module("app")
 				$scope.criancas=data;
 				//console.log(data);
 			}).error(function(response){
-				console.log(response);
+				console.log("error" + response);
 			});
 
 		}
@@ -169,6 +196,38 @@ angular.module("app")
 			editCrianca.propina = parseInt(crianca.propina);
 			editCrianca.dataInicioJardim = new Date(crianca.dataInicioJardim);
 			editCrianca.idade=calculateCriancaAge(editCrianca.dataNascimento);
+			
+			if(editCrianca.linguaFrancesa==1){
+				editCrianca.linguaFrancesa=true;
+			}else{
+				editCrianca.linguaFrancesa=false;
+			}
+
+			if(editCrianca.linguaInglesa==1){
+				editCrianca.linguaInglesa=true;
+			}else{
+				editCrianca.linguaInglesa=false;
+			}
+
+			if(editCrianca.periodoManha==1){
+				editCrianca.periodoManha=true;
+			}else{
+				editCrianca.periodoManha=false;
+			}
+
+			if(editCrianca.periodoTarde==1){
+				editCrianca.periodoTarde=true;
+			}else{
+				editCrianca.periodoTarde=false;
+			}
+
+			if(editCrianca.diaInteiro==1){
+				editCrianca.diaInteiro=true;
+			}else{
+				editCrianca.diaInteiro=false;
+			}
+
+			
 			$scope.crianca=editCrianca;
 			$scope.sizeCrianca = [];
 			$scope.sizeCrianca.push(crianca);
@@ -180,7 +239,6 @@ angular.module("app")
 				url:url,
 				data:crianca,
 			}).then(function(response){
-				console.log(response.data);	
 				$scope.getallCrianca();
 				$("#modalRegistarCrianca").modal("hide");
 				window.location.href="#/criancas";

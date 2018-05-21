@@ -10,18 +10,21 @@
 	switch ($want) {
 		
 		case 'GET':
-			//transportar_dados_morpho();
-			if(isset($_GET["id"])){
-				//transportar_dados_morpho();
-				$id = $_GET["id"];					
-				$select_all=$db->query("SELECT * FROM criancas c, pai p,mae m where 'c.id'='665' and 'c.idPai'='p.id' and 'c.idMae'='m.id';");
+		
+			if(isset($_GET["Localidades"])){
 
-				$data = mysqli_fetch_assoc($select_all);
+						
+				$select_localidades=$db->query("SELECT * FROM localidades order by nomeLocaliades;");
+				$localidades=[];
+				while ($data = mysqli_fetch_assoc($select_localidades))
+				{
+					$localidades[] = $data;
+				}
 
-				echo json_encode($data);
+				echo json_encode($localidades);
 			}else{
 
-				$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where c.idPai=p.id and c.idMae=m.id order by C.nome;");
+				$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae order by C.nome;");
 
 				$idcriancas = []; 
 				$criancas = []; 
@@ -48,7 +51,18 @@
 			$idade						= 	@$crianca['idade'];
 			$alcunha					= 	@$crianca['alcunha'];
 			$numeroPMI					= 	@$crianca['numeroPMI'];
+			
+			$periodoManha				= 	@$crianca['periodoManha'];
+			$periodoTarde				= 	@$crianca['periodoTarde'];
+			$diaInteiro					= 	@$crianca['diaInteiro'];
+			
 			$propina					= 	@$crianca['propina'];
+			
+			$linguaFrancesa				= 	@$crianca['linguaFrancesa'];
+			$linguaInglesa				= 	@$crianca['linguaInglesa'];
+
+			$almoco						= 	@$crianca['almoco'];
+			
 			$nomePai					= 	@$crianca['nomePai'];
 			$nomeMae					= 	@$crianca['nomeMae'];
 			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
@@ -90,29 +104,40 @@
 
 
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
-																  idade,alcunha,numeroPMI,propina,
-																  morada,dataInicioJardim,estado,idPai,idMae)
+																  idade,alcunha,numeroPMI,periodoManha,periodoTarde,diaInteiro,propina,
+																  linguaFrancesa,linguaInglesa,almoco,morada,dataInicioJardim,estado,idPai,idMae)
 								values('$nome','$sexo','$dataNascimento',
-									   '$idade','$alcunha','$numeroPMI','$propina','$morada',
-									   '$dataInicioJardim','$estado','$idPai','$idMae');") 
+									   '$idade','$alcunha','$numeroPMI','$periodoManha','$periodoTarde','$diaInteiro','$propina',
+									   '$linguaFrancesa','$linguaInglesa','$almoco','$morada','$dataInicioJardim','$estado','$idPai','$idMae');") 
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
 			echo json_encode($id_crianca);
-			
+
 		break;
 		case 'PUT':			
 			$crianca = json_decode(file_get_contents("php://input"), true);
-			$id							= 	@$crianca['id'];
+			$idCrianca					= 	@$crianca['idCrianca'];
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
 			$dataNascimentoForm     	= 	@$crianca['dataNascimento'];
 			$ExplodedataNascimento 		= 	explode("T", $dataNascimentoForm);
 			$dataNascimento				= 	$ExplodedataNascimento[0];
-			$idade						= 	'0';
+			$idade						= 	@$crianca['idade'];
 			$alcunha					= 	@$crianca['alcunha'];
 			$numeroPMI					= 	@$crianca['numeroPMI'];
+			
+			$periodoManha				= 	@$crianca['periodoManha'];
+			$periodoTarde				= 	@$crianca['periodoTarde'];
+			$diaInteiro					= 	@$crianca['diaInteiro'];
+			
 			$propina					= 	@$crianca['propina'];
+			
+			$linguaFrancesa				= 	@$crianca['linguaFrancesa'];
+			$linguaInglesa				= 	@$crianca['linguaInglesa'];
+
+			$almoco						= 	@$crianca['almoco'];
+			
 			$nomePai					= 	@$crianca['nomePai'];
 			$nomeMae					= 	@$crianca['nomeMae'];
 			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
@@ -122,16 +147,33 @@
 			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
 			$estado						= 	@$crianca['estado'];
 
+			$nomePai					=	@$crianca['nomePai'];
+			$profissaoPai				=	@$crianca['profissaoPai'];
+			$telefonePai				=	@$crianca['telefonePai'];
+			$movelPai					=	@$crianca['movelPai'];
+			$moradaPai					=	@$crianca['moradaPai'];
+			$alcunhaPai					=	@$crianca['alcunhaPai'];
+
+			$nomeMae					=	@$crianca['nomeMae'];
+			$profissaoMae				=	@$crianca['profissaoMae'];
+			$telefoneMae				=	@$crianca['telefoneMae'];
+			$movelMae					=	@$crianca['movelMae'];
+			$moradaMae					=	@$crianca['moradaMae'];
+			$alcunhaMae					=	@$crianca['alcunhaMae'];
+
 			$update_crianca=$db->query("UPDATE criancas set nome='$nome',sexo='$sexo',
-										 dataNascimento='$dataNascimento',alcunha='$alcunha',
-										 numeroPMI='$numeroPMI',propina='$propina',nomePai='$nomePai',nomeMae='$nomeMae',
-										 encaregadoEducacao='$encaregadoEducacao',morada='$morada',dataInicioJardim='$dataInicioJardim',
-										 estado='$estado'
-										 where id='$id';")
+										dataNascimento='$dataNascimento',alcunha='$alcunha',
+										numeroPMI='$numeroPMI',periodoManha='$periodoManha',
+										periodoTarde='$periodoTarde',diaInteiro='$diaInteiro',
+										propina='$propina',linguaFrancesa='$linguaFrancesa',
+										linguaInglesa='$linguaInglesa',almoco='$almoco',
+										morada='$morada',dataInicioJardim='$dataInicioJardim',
+										estado='$estado' where idCrianca='$idCrianca';")
 							 			or die(mysqli_error($db));
 			/*$id_funcionario=mysqli_insert_id($db);
 			$funcionario["id_funcionario"] = $id_funcionario;*/
 			echo json_encode("success");
+
 		break;		
 		default:			
 			echo json_decode(["erro"=>"404"]);	
