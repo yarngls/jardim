@@ -14,14 +14,7 @@
 			if(isset($_GET["Localidades"])){
 
 						
-				$select_localidades=$db->query("SELECT * FROM localidades order by nomeLocaliades;");
-				$localidades=[];
-				while ($data = mysqli_fetch_assoc($select_localidades))
-				{
-					$localidades[] = $data;
-				}
-
-				echo json_encode($localidades);
+				echo json_encode("success");
 			}else{
 
 				/*$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae order by C.nome;");*/
@@ -42,7 +35,7 @@
 			}
 		break;
 		case 'POST':
-			$crianca = json_decode(file_get_contents("php://input"), true);
+			/*$crianca = json_decode(file_get_contents("php://input"), true);
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
 			$dataNascimentoForm     	= 	@$crianca['dataNascimento'];
@@ -112,11 +105,11 @@
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
-			echo json_encode($id_crianca);
-
+			echo json_encode($id_crianca);*/
+			echo json_encode("success");
 		break;
 		case 'PUT':			
-			$crianca = json_decode(file_get_contents("php://input"), true);
+		/*	$crianca = json_decode(file_get_contents("php://input"), true);
 			$idCrianca					= 	@$crianca['idCrianca'];
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
