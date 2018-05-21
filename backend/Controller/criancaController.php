@@ -14,12 +14,30 @@
 			if(isset($_GET["Localidades"])){
 
 						
-				echo json_encode("success");
+				$select_localidades=$db->query("SELECT * FROM localidades order by nomeLocaliades;");
+				$localidades=[];
+				while ($data = mysqli_fetch_assoc($select_localidades))
+				{
+					$localidades[] = $data;
+				}
+
+				echo json_encode($localidades);
 			}else{
 
 				/*$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae order by C.nome;");*/
-				
-				echo json_encode("success");
+				$select_all=$db->query("SELECT * FROM criancas order by nome;");
+
+				$criancas = []; 
+
+				while ($data = mysqli_fetch_assoc($select_all))
+				{
+					//$data["nome"] = mb_convert_encoding($data["nome"], "UTF-8");
+					/*foreach ($data as $key => $value) {
+						$data[$key] = mb_convert_encoding($value, "UTF-8");
+					}*/
+					$criancas[] = $data;
+				}
+				echo json_encode($criancas);
 
 			}
 		break;
