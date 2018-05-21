@@ -18,19 +18,8 @@
 			}else{
 
 				/*$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae order by C.nome;");*/
-				$select_all=$db->query("SELECT * FROM criancas order by nome;");
-
-				$criancas = []; 
-
-				while ($data = mysqli_fetch_assoc($select_all))
-				{
-					//$data["nome"] = mb_convert_encoding($data["nome"], "UTF-8");
-					/*foreach ($data as $key => $value) {
-						$data[$key] = mb_convert_encoding($value, "UTF-8");
-					}*/
-					$criancas[] = $data;
-				}
-				echo json_encode($criancas);
+				
+				echo json_encode("success");
 
 			}
 		break;
