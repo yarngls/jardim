@@ -104,13 +104,13 @@ angular.module("app")
 			$("#form_pai").trigger("reset");
 			$("#form_mae").trigger("reset");
 
-			$http({
+			/*$http({
 				method:"Get",
 				url:url+"?estado='Localidades'",
 				data:"Localidades",
 			}).then(function(response){
 				console.log("resposta" + response.data);
-			});
+			});*/
 
 
 		}
