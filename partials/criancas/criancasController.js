@@ -142,7 +142,8 @@ angular.module("app")
 					console.log("resposta" + response.data);
 					$scope.getallCrianca();
 					$("#form_crianca").trigger("reset");
-					$("#modalRegistarCrianca").modal("hide");		
+					$("#modalRegistarCrianca").modal("hide");	
+					window.location.href="#/criancas";	
 				});
 
 		}
