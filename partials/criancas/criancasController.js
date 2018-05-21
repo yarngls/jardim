@@ -130,9 +130,10 @@ angular.module("app")
 		$scope.criarCrianca = function(crianca){
 				
 				//console.log(crianca);
-				if(crianca.almoco==""){
+				if(crianca.almoco==undefined){
 					crianca.almoco=0;
 				}
+				//console.log(crianca.almoco);
 				$http({
 					method:"POST",
 					url:url,
@@ -140,8 +141,6 @@ angular.module("app")
 				}).then(function(response){
 					console.log("resposta" + response.data);
 					$scope.getallCrianca();
-					/*var datas = response.data;	
-					console.log("sexo " + datas.sexo);	*/
 					$("#form_crianca").trigger("reset");
 					$("#modalRegistarCrianca").modal("hide");		
 				});
