@@ -130,7 +130,7 @@ angular.module("app")
 		$scope.criarCrianca = function(crianca){
 				
 				//console.log(crianca);
-				if(crianca.almoco==NaN){
+				if(crianca.almoco==""){
 					crianca.almoco=0;
 				}
 				$http({
