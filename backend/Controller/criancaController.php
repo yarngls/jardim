@@ -42,7 +42,7 @@
 			}
 		break;
 		case 'POST':
-			/*$crianca = json_decode(file_get_contents("php://input"), true);
+			$crianca = json_decode(file_get_contents("php://input"), true);
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
 			$dataNascimentoForm     	= 	@$crianca['dataNascimento'];
@@ -112,8 +112,8 @@
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
 			$crianca["id"] = $id_crianca;
-			echo json_encode($id_crianca);*/
-			echo json_encode("success");
+			echo json_encode($id_crianca);
+			//echo json_encode("success");
 		break;
 		case 'PUT':			
 		/*	$crianca = json_decode(file_get_contents("php://input"), true);
