@@ -45,6 +45,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        <th>Perfil</th>
                         <th>Nome</th>
                         <th>Sexo</th>
                         <th>Alcunha </th>
@@ -56,6 +57,8 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="crianca in criancas | filter : pesquisar">
+                        <td><a href="#" class="pull-left">
+                            </a><small><img alt="image" class="img-circle" src="img/a1.jpg" style="width:2vw; height= 10vh;"></small></td>
                         <td>{{crianca.nome}}</small></td>
                         <td>{{crianca.sexo}}</td>
                         <td>{{crianca.alcunha}}</td>
@@ -63,7 +66,7 @@
                         <td>{{crianca.numeroPMI}}</td>
                         <td>{{crianca.morada}}</td>
                         <td style="text-align:center;"> 
-                            <a href="#/criancas-details"><button type="button" class="btn btn-white btn-sm" style="color:green;" ng-click="ver(crianca)"><i class="fa fa-eye"></i>Ver</button></a>
+                            <a href="#/criancas-details/{{crianca.idCrianca}}"><button type="button" class="btn btn-white btn-sm" style="color:green;"><i class="fa fa-eye"></i>Ver</button></a>
                             <button type="button" class="btn btn-white btn-sm" style="color:blue;" ng-click="editar(crianca)" data-toggle="modal" data-target="#modalRegistarCrianca"><i class="fa fa-pencil"></i>Editar</button>
                             <button type="button" class="btn btn-white btn-sm" style="color:red;" ng-click="eliminarCrianca(crianca.idCrianca)" data-toggle="modal" data-target="#myModalEliminar"><i class="fa fa-times"></i>Eliminar</button>
                         </td>
