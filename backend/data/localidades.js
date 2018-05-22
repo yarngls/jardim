@@ -20,7 +20,7 @@ var localidades=[
 					"Palmarejo Grande-Monte Vermelho",
 					"Pensamento",
 					"Plateau",
-					"Praia Farmosa",
+					"Praia Formosa",
 					"Prainha",
 					"Ponta da Agua",
 					"Quebra Canela",
