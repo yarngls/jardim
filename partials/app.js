@@ -1,4 +1,4 @@
-var app  = angular.module('app',['ngRoute','urlService','funcoesServices','fullCalendar'])
+var app  = angular.module('app',['ngRoute','ng-fusioncharts','urlService','funcoesServices','fullCalendar'])
 	
 
 	.config(['$routeProvider',function($routeProvider){

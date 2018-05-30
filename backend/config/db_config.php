@@ -1,6 +1,26 @@
 <?php
 
-	function connection(){
+	class Connection{
+
+		
+		
+		function __construct(){
+		
+			$hostname 	=	'localhost';
+			$username	=	'root';
+			$password	=	'';
+			$dbname   	=	'encanto';
+
+			$connection = mysqli_connect($hostname,$username,$password,$dbname) or die(mysql_error("erro de conexao"));
+		
+			
+
+		}
+		
+
+	}
+	
+	/*function connection(){
 		
 		$hostname 	=	'localhost';
 		$username	=	'root';
@@ -12,7 +32,7 @@
 		return $connection;
 
 	}
-	header("Content-Type: application/json");
+	header("Content-Type: application/json");*/
 
 	
 ?>

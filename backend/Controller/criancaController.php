@@ -1,11 +1,47 @@
 <?php
-
+	
+	include_once  '../Models/criancaModel.php';
 	require_once "../function_RH.php";
-	//require_once "../transportar_dados_morpho.php";
-	//require_once "../transportar_dados_morpho.php";
 	$db=connection();
+	
 
 	$want = $_SERVER["REQUEST_METHOD"];
+	$crianca = new Crianca();
+	switch ($want) {
+		
+		case 'GET':	
+
+			$crianca->getAllCrianca($db);
+
+		break;
+		case 'POST':
+
+			$receiveCrianca = json_decode(file_get_contents("php://input"),true);
+			$crianca->registarCrianca($receiveCrianca,$db);
+
+		break;
+		case 'PUT':	
+		
+			$receiveCrianca = json_decode(file_get_contents("php://input"), true);
+
+			if(isset($receiveCrianca["condicao"]) && $receiveCrianca["condicao"]=="eliminar"){	
+				$idCrianca = $receiveCrianca["idCrianca"];
+				$crianca->deleteByID($idCrianca,$db);
+				//echo json_encode($receiveCrianca["condicao"]);
+
+			}else{
+				$crianca->updateCrianca($receiveCrianca,$db);
+			}	
+		break;		
+		default:			
+			echo json_decode(["erro"=>"404"]);	
+		break;
+
+		
+	}
+
+
+	/*
 
 	switch ($want) {
 		
@@ -35,7 +71,7 @@
 					/*foreach ($data as $key => $value) {
 						$data[$key] = mb_convert_encoding($value, "UTF-8");
 					}*/
-					$criancas[] = $data;
+					/*$criancas[] = $data;
 				}
 				echo json_encode($criancas);
 
@@ -194,7 +230,7 @@
 								 			or die(mysqli_error($db));
 				/*$id_funcionario=mysqli_insert_id($db);
 				$funcionario["id_funcionario"] = $id_funcionario;*/
-				echo json_encode("sucess");
+				/*echo json_encode("sucess");
 			}
 
 
@@ -206,4 +242,10 @@
 		
 	}
 
+
+	*/
+
 ?>
+
+
+

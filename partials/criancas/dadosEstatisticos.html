@@ -1,0 +1,105 @@
+<form class="form-horizontal" id="form_crianca" name="form_crianca">
+    <div class="form-group">
+        <div class="col-lg-9"></div>
+
+    </div>
+    <div class="ibox-title" style="background-color:#9bb97f; color:white;">
+        <h5>Dados Estatísticos</h5>
+    </div>
+    <div class="ibox-title"> </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Frequentou alguma vez outro jardim?</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"  value='SIM' ng-model="crianca.frequentouOutroJardim"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"  value='NAO' ng-model="crianca.frequentouOutroJardim"></div>
+        </div>
+    </div> 
+    <div class="form-group"><label class="col-lg-4 control-label">A criança vive com os pais?</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.viveComPais"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.viveComPais"></div>
+        </div>
+    </div>   
+    <div class="ibox-title" style="background-color:#2f4050; color:white;">
+        <h5>Vacinas:</h5>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">BCG:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.vacinaBCG"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.vacinaBCG"></div>
+        </div>
+    </div>  
+    <div class="form-group"><label class="col-lg-4 control-label">Pólio:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.vacinaPolio"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.vacinaPolio"></div>
+        </div>
+    </div>  
+    <div class="form-group"><label class="col-lg-4 control-label">Hepatite B:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.vacinaHepatiteB"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.vacinaHepatiteB"></div>
+        </div>
+    </div>   
+    <div class="form-group"><label class="col-lg-4 control-label">Sarampo:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.vacinaSarampo"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.vacinaSarampo"></div>
+        </div>
+    </div>
+    <div class="ibox-title" style="background-color:#ab3436; color:white;">
+        <h5>Características da Criança:</h5>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Tem NEE:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.nee"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.nee"></div>
+        </div>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Tímida:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.timida"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.timida"></div>
+        </div>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Alegre:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.alegre"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.alegre"></div>
+        </div>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Brinca espontaneamente:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.brinca"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.brinca"></div>
+        </div>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Pode ir casa de banho:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.vaiCasaBanho"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.vaiCasaBanho"></div>
+        </div>
+    </div> 
+    <div class="form-group"><label class="col-lg-4 control-label">Gosta do Jardim:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.gostaJardim"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.gostaJardim"></div>
+        </div>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Relaciona com outras crianças:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.relaciona"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.relaciona"></div>
+        </div>
+    </div>
+    <div class="form-group"><label class="col-lg-4 control-label">Tem algum tipo de alergia:</label>
+        <div class="col-lg-8">
+            <label class="col-lg-2 control-label">Sim</label><div class="col-lg-1"><input type="radio"   value='SIM' ng-model="crianca.temAlergia"></div>
+            <label class="col-lg-1 control-label">Não</label><div class="col-lg-1"><input type="radio"   value='NAO' ng-model="crianca.temAlergia"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="cancelarEstatisticas()">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="criarEstatisticas(crianca)" >Guardar</button>
+        
+    </div>
+</form>

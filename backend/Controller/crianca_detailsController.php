@@ -1,37 +1,31 @@
 <?php
 
 	//require "../config/db_config.php";
+	include_once  '../Models/criancaModel.php';
 	require "../function_RH.php";
 	$db=connection();
 
 	$want = $_SERVER["REQUEST_METHOD"];
-
+	$crianca = new Crianca();
 	switch ($want) {
 		
 		case 'GET':
 			
 			$idCrianca = $_GET["id"];
 			
-			$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M where C.idPai=P.idPai and C.idMae=M.idMae and C.idCrianca='$idCrianca';");
-				//$select_all=$db->query("SELECT * FROM criancas order by nome;");
-
-				$criancas = []; 
-
-				while ($data = mysqli_fetch_assoc($select_all))
-				{
-					//$data["nome"] = mb_convert_encoding($data["nome"], "UTF-8");
-					/*foreach ($data as $key => $value) {
-						$data[$key] = mb_convert_encoding($value, "UTF-8");
-					}*/
-					$criancas[] = $data;
-				}
-			echo json_encode($criancas);
+			$criancasSelected = $crianca->selectByID($idCrianca,$db);
+			echo json_encode($criancasSelected);
 			
 		break;
-
 		case 'PUT':
-			
-			echo json_encode(["value"=>"actualizado com sucesso"]);
+			$received = json_decode(file_get_contents("php://input"), true);
+			if(isset($received["condicao"]) && $received["condicao"]=='estatisticas'){
+				$criancaReceived = $received["crianca"];
+				$response=$crianca->saveEstatisticas($criancaReceived,$db);
+				echo json_encode($response);
+			}else{
+				echo json_encode(["value"=>"other case"]);				
+			}
 		break;
 
 		default:

@@ -1,15 +1,6 @@
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>{{tittle}}</h2>
-        <!--<ol class="breadcrumb">
-            <li>
-                <a href="index.html">This is</a>
-            </li>
-            <li class="active">
-                <strong>Breadcrumb</strong>
-            </li>
-        </ol>-->
     </div>
 </div>
 <div class="row animated fadeInRight">
@@ -21,146 +12,104 @@
                         <image id="profileImage" src="img/superHeroy.jpg" class="img-circle circle-border m-b-md"/>
                         <input id="imageUpload" type="file"  name="profile_photo" placeholder="Photo" required="" capture>
                     </div><label class="col-lg-1 control-label"></label><div class="col-lg-1"></div>
-                   <div class="" style="margin-top:2vh;">
+                    <div class="" style="margin-top:2vh;">
                            
-                        </div>
-                    
-                    <div>
-                        <span>Pagamentos 10</span> |
-                        <span>Dividas 3</span> |
-                        <span>Estado Matriculado</span>
-                    </div>
+                    </div>                  
+                   
                     <h3>
                         {{crianca.nome}}
                     </h3>
-                    <ul class="list-unstyled m-t-md">
-                        <li>
-                            <span class="fa fa-envelope m-r-xs"></span>
-                            <label>Email:</label>
-                            mike@mail.com
-                        </li>
+                    <ul class="list-unstyled m-t-md">                       
                         <li>
                             <span class="fa fa-home m-r-xs"></span>
                             <label>Morada:</label>
                            {{crianca.morada}}
+                        </li>  
+                        <li>
+                            <span class="fa fa-home m-r-xs"></span>
+                            <label>Sexo:</label>
+                           {{crianca.sexo}}
                         </li>
                         <li>
                             <span class="fa fa-phone m-r-xs"></span>
-                            <label>Contact:</label>
-                            (+121) 678 3462
-                        </li>
+                            <label>Nº PMI:</label>
+                           {{crianca.numeroPMI}}
+                        </li> 
                         <li>
                             <span class="fa fa-phone m-r-xs"></span>
                             <label>Aniversário:</label>
                            {{crianca.dataNascimento}}
                         </li>
+                        <li>
+                            <span class="fa fa-phone m-r-xs"></span>
+                            <label>Propina:</label>
+                           {{crianca.propina}}$00
+                        </li>
                     </ul>
                 </div>
-                <div class="widget red-bg p-lg text-center">
-                    <div class="m-b-md">
-                        <i class="fa fa-bell fa-4x"></i>
-                        <h1 class="m-xs">47</h1>
-                        <h3 class="font-bold no-margins">
-                            Notification
-                        </h3>
-                        <small>We detect the error.</small>
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="widget-text-box">
             <h4 class="media-heading">Alex Smith</h4>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
             <div class="text-right">
-                <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
+               
             </div>
         </div>
     </div>
-    <div class="col-md-8">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>Activites</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#">Config option 1</a>
-                        </li>
-                        <li><a href="#">Config option 2</a>
-                        </li>
-                    </ul>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="ibox-content">
-                <div>
-                    <div class="feed-activity-list">
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a1.jpg">
-                            </a>
-                            <div class="media-body ">
-                               
-                            </div>
-                        </div>
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a1.jpg">
-                            </a>
-                        </div>
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a2.jpg">
-                            </a>
-                            <div class="media-body ">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="wrapper wrapper-content animated fadeInUp">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="m-b-md">
+                                   
+                                    <h2>Relátorios da Criança</h2>
+                                </div>
+                                <div>
+                                    <span>Pagamentos 10</span> |
+                                    <span>Dividas 3</span> |
+                                    <span>Estado Matriculado</span>
+                                </div>
                                 
                             </div>
                         </div>
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a3.jpg">
-                            </a>
-                            <div class="media-body ">
-                                
-                            </div>
-                        </div>
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a4.jpg">
-                            </a>
-                            <div class="media-body ">
-                             
-                            </div>
-                        </div>
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a5.jpg">
-                            </a>
-                            <div class="media-body ">
-                               
-                            </div>
-                        </div>
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/profile.jpg">
-                            </a>
-                            <div class="media-body ">
-                               
-                            </div>
-                        </div>
-                        <div class="feed-element">
-                            <a href="#" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a7.jpg">
-                            </a>
-                            <div class="media-body ">
-                               
+                        
+                        <div class="row m-t-sm">
+                            <div class="col-lg-12">
+                                <div class="panel blank-panel">
+                                    <div class="panel-heading">
+                                        <div class="panel-options">
+                                            <ul class="nav nav-tabs">                                           
+                                                <li class="active"><a data-toggle="tab" ng-click='paisEncarregadosEducacao()'>Pais Encarregados de Educação</a></li>
+                                                <li class=""><a data-toggle="tab" ng-click='dadosEstatisticos()' >Dados Estatísticos</a></li>
+                                                <li class=""><a data-toggle="tab" ng-click='casoUrgencia()' >Informações em caso de Urgência</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab-1">
+                                                <div ng-show="Table=='paisEncarregadosEducacao'">
+                                                    <div ng-include="'partials/criancas/paisEncarregadosEducacao.html'"></div>
+                                              
+                                                </div>
+                                                <div ng-show="Table=='dadosEstatisticos'">
+                                                    <div ng-include="'partials/criancas/dadosEstatisticos.html'"></div>
+                                              
+                                                </div>
+                                                <div ng-show="Table=='casoUrgencia'">
+                                                    <div ng-include="'partials/criancas/casoUrgencia.html'"></div>
+                                              
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
