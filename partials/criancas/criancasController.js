@@ -104,11 +104,11 @@ angular.module("app")
 				url:url,
 				data:$scope.crianca,
 			}).then(function(response){
-				console.log("resposta" + response.data);
-				$scope.getallCrianca();
+				//console.log("resposta" + response.data);
+				//$scope.getallCrianca();
 				//$("#form_crianca").trigger("reset");
 				$("#modalRegistarCrianca").modal("hide");	
-				window.location.href="#/criancas";	
+				//window.location.href="#/criancas";	
 			});
 			
 		}
