@@ -222,8 +222,20 @@ angular.module("app")
 				url:url,
 				data:{criancas,idCrianca,condicao,fatura},
 			}).then(function(response){
-				//$scope.dividas = response.data;
 				console.log(response.data);
+				$.confirm({
+					title: false,
+				    content: 'Divida liquidada com sucesso! <br> ',
+				    buttons: {
+				        OK: {
+				            btnClass: 'btn-green',
+				            action: function(){
+				            }
+				        },				       
+				    }
+				});
+				$("#modalTodasDividas").modal("hide");
+				window.location.href="#/criancas-details/"+idCrianca;
 			});
 		}
 

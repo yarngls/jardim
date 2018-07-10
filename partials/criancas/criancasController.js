@@ -301,7 +301,7 @@ angular.module("app")
 		}
 
 		$scope.efetuarPagamento = function (){
-			
+		
 			var idCrianca= $scope.criancaPagar.idCrianca;
 			var condicao = 'pagamento';
 			var fatura=$scope.itens;
@@ -310,8 +310,21 @@ angular.module("app")
 				method:"PUT",
 				url:url,
 				data:{condicao,idCrianca,fatura}
-			}).then(function(response){
+			}).then(function(response){				
 				console.log(response.data);
+				$.confirm({
+					title: false,
+				    content: 'Pagamento efetuado com sucesso! <br> ',
+				    buttons: {
+				        OK: {
+				            btnClass: 'btn-green',
+				            action: function(){
+				            }
+				        },				       
+				    }
+				});
+				$("#modalPagamento").modal("hide");
+				//window.location.href="#/criancas";
 				/*$scope.getallCrianca();
 				$("#myModalEliminar").modal("hide");
 				window.location.href="#/criancas";*/
