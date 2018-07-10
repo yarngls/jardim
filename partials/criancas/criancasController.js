@@ -95,6 +95,7 @@ angular.module("app")
 
 		$scope.localidades = localidades;
 	
+		//$scope.crianca.linguaInglesa=parseInt(0);
 
 		$scope.criarCrianca = function(crianca){
 			console.log($scope.crianca);
