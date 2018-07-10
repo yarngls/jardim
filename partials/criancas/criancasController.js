@@ -105,7 +105,7 @@ angular.module("app")
 				data:$scope.crianca,
 			}).then(function(response){
 				//console.log("resposta" + response.data);
-				//$scope.getallCrianca();
+				$scope.getallCrianca();
 				//$("#form_crianca").trigger("reset");
 				$("#modalRegistarCrianca").modal("hide");	
 				//window.location.href="#/criancas";	
