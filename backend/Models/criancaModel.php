@@ -118,9 +118,9 @@
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,periodoManha,periodoTarde,diaInteiro,propina,
 																  linguaFrancesa,linguaInglesa,almoco,morada,dataInicioJardim,estado,idPai,idMae)
-								values('$crianca->nome','$crianca->sexo','1987-04-17',
+								values('$crianca->nome','$crianca->sexo','$this->dataNascimento',
 									   '$crianca->idade','$crianca->alcunha','$crianca->numeroPMI','$crianca->periodoManha','$crianca->periodoTarde','$crianca->diaInteiro','$crianca->propina',
-									   '$crianca->linguaFrancesa','$crianca->linguaInglesa','$crianca->almoco','$crianca->morada','2018-07-10',
+									   '$crianca->linguaFrancesa','$crianca->linguaInglesa','$crianca->almoco','$crianca->morada','$this->dataInicioJardim',
 									   '$crianca->estado','$crianca->idPai','$crianca->idMae');") 
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
