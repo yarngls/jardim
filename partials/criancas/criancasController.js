@@ -108,7 +108,7 @@ angular.module("app")
 				$scope.getallCrianca();
 				//$("#form_crianca").trigger("reset");
 				$("#modalRegistarCrianca").modal("hide");	
-				//window.location.href="#/criancas";	
+				window.location.href="#/criancas";	
 			});
 			
 		}
