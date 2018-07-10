@@ -98,12 +98,17 @@
 			$idMae=$mae->registarMae($this->nomeMae,$this->profissaoMae,$this->telefoneMae,$this->movelMae,$this->moradaMae,$this->alcunhaMae,$db);
 			$this->idMae=$idMae;
 
+			$ArrayDataNacimento = explode("T", $crianca->dataNascimento);
+			$dataNacimentoCerto = $ArrayDataNacimento[0];
+
+			$ArraydataInicioJardim = explode("T", $crianca->dataInicioJardim);
+			$dataInicioJardimCerto = $ArraydataInicioJardim[0];
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,periodoManha,periodoTarde,diaInteiro,propina,
 																  linguaFrancesa,linguaInglesa,almoco,morada,dataInicioJardim,estado,idPai,idMae)
-								values('$crianca->nome','$crianca->sexo','$crianca->dataNascimento',
+								values('$crianca->nome','$crianca->sexo','$dataNacimentoCerto',
 									   '$crianca->idade','$crianca->alcunha','$crianca->numeroPMI','$crianca->periodoManha','$crianca->periodoTarde','$crianca->diaInteiro','$crianca->propina',
-									   '$crianca->linguaFrancesa','$crianca->linguaInglesa','$crianca->almoco','$crianca->morada','$crianca->dataInicioJardim',
+									   '$crianca->linguaFrancesa','$crianca->linguaInglesa','$crianca->almoco','$crianca->morada','$dataInicioJardimCerto',
 									   '$crianca->estado','$crianca->idPai','$crianca->idMae');") 
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
@@ -113,7 +118,7 @@
 							or die(mysqli_error($db));
 			$id_estatisticas=mysqli_insert_id($db);
 
-			echo json_encode($id_crianca);
+			echo json_encode($crianca->dataNascimento);
 		}
 
 

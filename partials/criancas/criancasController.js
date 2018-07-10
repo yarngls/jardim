@@ -97,7 +97,8 @@ angular.module("app")
 	
 
 		$scope.criarCrianca = function(crianca){
-			console.log($scope.crianca);
+			/*console.log($scope.crianca.dataNascimento);
+			console.log($scope.crianca.dataInicioJardim);*/
 			var picture = $("#imageUpload").val();
 			$http({
 				method:"POST",
@@ -106,8 +107,8 @@ angular.module("app")
 			}).then(function(response){
 				console.log("resposta" + response.data);
 				$scope.getallCrianca();
-				//$("#form_crianca").trigger("reset");
-				//$("#modalRegistarCrianca").modal("hide");	
+				$("#form_crianca").trigger("reset");
+				$("#modalRegistarCrianca").modal("hide");	
 				window.location.href="#/criancas";	
 			});
 			
