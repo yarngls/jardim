@@ -98,7 +98,22 @@ angular.module("app")
 		//$scope.crianca.linguaInglesa=parseInt(0);
 
 		$scope.criarCrianca = function(crianca){
-			console.log($scope.crianca);
+			if(crianca.propina==undefined){
+				crianca.propina=parseInt(0);
+			}
+
+			if(crianca.linguaInglesa==undefined){
+				crianca.linguaInglesa=parseInt(0);
+			}
+
+			if(crianca.linguaFrancesa==undefined){
+				crianca.linguaFrancesa=parseInt(0);
+			}
+
+			if(crianca.almoco==undefined){
+				crianca.almoco=parseInt(0);
+			}
+		
 			var picture = $("#imageUpload").val();
 			$http({
 				method:"POST",
