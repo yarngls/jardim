@@ -5,6 +5,7 @@
 		
 		$hostname 	=	'127.0.0.1';
 		$username	=	'root';
+		//$password	=	'b3nl1t3ch18';
 		$password	=	'b3nl1t3ch18';
 		//$password	=	'';
 		$dbname   	=	'encanto';
