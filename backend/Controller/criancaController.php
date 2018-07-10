@@ -2,42 +2,74 @@
 	
 	include_once  '../Models/criancaModel.php';
 	require_once "../function_RH.php";
+	require_once "../Models/pagamentoModel.php";
+	include_once '../Models/dividasModel.php';
 	$db=connection();
 	
 
 	$want = $_SERVER["REQUEST_METHOD"];
-	$crianca = new Crianca();
+	$receiveCrianca = json_decode(file_get_contents("php://input"),true);
+	$crianca = new Crianca($receiveCrianca);
 	switch ($want) {
 		
 		case 'GET':	
 
-			$crianca->getAllCrianca($db);
+			$crianca->getAllCrianca($crianca,$db);
 
 		break;
 		case 'POST':
 
-			$receiveCrianca = json_decode(file_get_contents("php://input"),true);
-			$crianca->registarCrianca($receiveCrianca,$db);
+			//$receiveCrianca = json_decode(file_get_contents("php://input"),true);
+			//$crianca->registarCrianca($receiveCrianca,$db);
+			$crianca->registarCrianca($crianca,$db);
 
 		break;
 		case 'PUT':	
 		
-			$receiveCrianca = json_decode(file_get_contents("php://input"), true);
+			//$receiveCrianca = json_decode(file_get_contents("php://input"), true);
 
 			if(isset($receiveCrianca["condicao"]) && $receiveCrianca["condicao"]=="eliminar"){	
 				$idCrianca = $receiveCrianca["idCrianca"];
 				$crianca->deleteByID($idCrianca,$db);
 				//echo json_encode($receiveCrianca["condicao"]);
 
+			}elseif(isset($receiveCrianca["condicao"]) && $receiveCrianca["condicao"]=="pagamento"){
+				$fatura = $receiveCrianca["fatura"];
+				$idCrianca = $receiveCrianca["idCrianca"];
+				$pagamento = new Pagamento();
+				$pagamento->efetuar_pagamento_normal($fatura,$idCrianca,$db);
+			}elseif(isset($receiveCrianca["condicao"]) && $receiveCrianca["condicao"]=="verificarDividas"){
+				$idCrianca = $receiveCrianca["idCrianca"];
+				$fatura = $receiveCrianca["dataFatura"];
+				$dividas = new Dividas();
+
+				$mes_referencia=convertMonthforIndece($fatura["mes_referencia"]);//funcao que recebe mes e envia o numero do mes// ver em ../function_RH.php
+
+				$response=$dividas->verificarDividas($idCrianca,$mes_referencia,$fatura["ano_referencia"],$db);
+				echo json_encode(["condicao"=>$response]);
+			}elseif(isset($receiveCrianca["condicao"]) && $receiveCrianca["condicao"]=="consultarDividas"){
+				$id_crianca = $receiveCrianca["idCrianca"];
+				$dividas = new Dividas();
+				$totalDividas=$dividas->countDividas($id_crianca,$db);
+				echo json_encode($totalDividas);
+			}elseif(isset($receiveCrianca["condicao"]) && $receiveCrianca["condicao"]=="montanteApagar"){
+			
+				$tipo_pagamento = $receiveCrianca["tipo_pagamento"];
+				$mes_referencia = convertMonthforIndece($receiveCrianca["mes_referencia"]);
+				$ano_referencia = $receiveCrianca["ano_referencia"];
+				$idCrianca_pagamento = $receiveCrianca["idCrianca_pagamento"];
+				$pagamento = new Pagamento();
+
+				$montanteApagar=$pagamento->calcularMontanteApagar($tipo_pagamento,$mes_referencia,$ano_referencia,$idCrianca_pagamento,$db);
+
+				echo json_encode($montanteApagar);
 			}else{
-				$crianca->updateCrianca($receiveCrianca,$db);
+				$crianca->updateCrianca($crianca,$db);
 			}	
 		break;		
 		default:			
 			echo json_decode(["erro"=>"404"]);	
-		break;
-
-		
+		break;		
 	}
 
 

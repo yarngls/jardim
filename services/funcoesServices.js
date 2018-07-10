@@ -38,10 +38,12 @@ var funcoes = angular.module("funcoesServices",[]);
 			editCrianca.idade = parseInt(crianca.idade);
 			editCrianca.propina = parseInt(crianca.propina);
 			editCrianca.almoco = parseInt(crianca.almoco);
+			editCrianca.linguaFrancesa = parseInt(crianca.linguaFrancesa);
+			editCrianca.linguaInglesa = parseInt(crianca.linguaInglesa);
 			editCrianca.dataInicioJardim = new Date(crianca.dataInicioJardim);
 			editCrianca.idade=_calculateCriancaAge(editCrianca.dataNascimento);
 			
-			if(editCrianca.linguaFrancesa==1){
+			/*if(editCrianca.linguaFrancesa==1){
 				editCrianca.linguaFrancesa=true;
 			}else{
 				editCrianca.linguaFrancesa=false;
@@ -51,7 +53,7 @@ var funcoes = angular.module("funcoesServices",[]);
 				editCrianca.linguaInglesa=true;
 			}else{
 				editCrianca.linguaInglesa=false;
-			}
+			}*/
 
 			if(editCrianca.periodoManha==1){
 				editCrianca.periodoManha=true;

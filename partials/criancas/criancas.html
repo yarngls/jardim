@@ -1,3 +1,4 @@
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-12">
         <h4>{{tittle}}</h4>
@@ -9,6 +10,7 @@
 			        </button>
     			</div>
             </li>
+           
            <!-- <li class="active">
                 <strong>Breadcrumb</strong>
             </li>-->
@@ -51,7 +53,7 @@
                         <th>Propina</th>
                         <th>Nº PMI</th>
                         <th>Morada</th>
-                        <th style="text-align:center;">Monitorizar</th>
+                        <th style="text-align:left;">Monitorizar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,10 +66,36 @@
                         <td>{{crianca.propina}}$00</td>
                         <td>{{crianca.numeroPMI}}</td>
                         <td>{{crianca.morada}}</td>
-                        <td style="text-align:center;"> 
-                            <a href="#/criancas-details/{{crianca.idCrianca}}"><button type="button" class="btn btn-white btn-sm" style="color:green;"><i class="fa fa-eye"></i>Ver</button></a>
+                        <td style="text-align:left;"> 
+
+                           <div class="dropdown profile-element"> 
+                                <a data-toggle="dropdown" class="dropdown-toggle" href=""><span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"></strong>
+                                 </span> <span class="text-muted text-xs block"><i class="fa fa-bars"></i></span> </span> </a>
+                                <ul class="dropdown-menu dropdown-alerts">   
+                                    <!--<li><span style="margin-top:-1.7vh; height:20vh; width:4vw;position: absolute; margin-left:-0.5vw;"> <i class="fa fa-sort-up"></i></span></li> -->                              
+                                    <li>                                           
+                                        <div>
+                                       <a href="#/criancas-details/{{crianca.idCrianca}}" style="color:#676a71;"><button style="border:none; background-color:#FFFFFF; "><i class="fa fa-eye"></i> Ver</button></a>
+                                           <!-- <button style="border:none; background-color:#FFFFFF" ng-click="editar(crianca)" data-toggle="modal" data-target="#modalRegistarCrianca" style="" > Editar</button>-->
+                                        </div>                                                
+                                    </li>
+                                    <li class="divider"></li>                                        
+                                    <li>                                       
+                                        <div>
+                                             <button style="border:none; background-color:#FFFFFF" ng-click="pagamento(crianca)" data-toggle="modal" data-target="#modalPagamento"><i class="fa fa-cc-visa"></i> Pagamentos</button>                                           
+                                        </div>                                        
+                                    </li>
+                                    <li class="divider"></li>                                        
+                                    <li>                                       
+                                        <div>
+                                             <button style="border:none; background-color:#FFFFFF" ng-click="eliminarCrianca(crianca.idCrianca)" data-toggle="modal" data-target="" style="" ><i class="fa fa-trash"></i> Eliminar</button>                                           
+                                        </div>                                        
+                                    </li>                  
+                                </ul>
+                            </div>  
+                            <!--<a href="#/criancas-details/{{crianca.idCrianca}}"><button type="button" class="btn btn-white btn-sm" style="color:green;"><i class="fa fa-eye"></i>Ver</button></a>
                             <button type="button" class="btn btn-white btn-sm" style="color:blue;" ng-click="editar(crianca)" data-toggle="modal" data-target="#modalRegistarCrianca"><i class="fa fa-pencil"></i>Editar</button>
-                            <button type="button" class="btn btn-white btn-sm" style="color:red;" ng-click="eliminarCrianca(crianca.idCrianca)" data-toggle="modal" data-target="#myModalEliminar"><i class="fa fa-times"></i>Eliminar</button>
+                            <button type="button" class="btn btn-white btn-sm" style="color:red;" ng-click="eliminarCrianca(crianca.idCrianca)" data-toggle="modal" data-target="#myModalEliminar"><i class="fa fa-times"></i>Eliminar</button>-->
                         </td>
                     </tr>
                     </tbody>
@@ -151,11 +179,11 @@
                         <div class="form-group"><label class="col-lg-2 control-label">Propina</label>
                             <div class="col-lg-9"><input type="number" placeholder="Propina" class="form-control" ng-model="crianca.propina" ng-required="true"></div>
                         </div>
-                        <div class="form-group"><label class="col-lg-2 control-label">Lingua Estrang.</label>
+                        <div class="form-group"><label class="col-lg-2 control-label">Francês</label>
                             <div class="col-lg-9">
-                                <label class="col-lg-2 control-label">Francês</label><div class="col-lg-1"><input type="checkbox" ng-model="crianca.linguaFrancesa"></div>
-                                <label class="col-lg-1 control-label">Inglês</label><div class="col-lg-1"><input type="checkbox" ng-model="crianca.linguaInglesa"></div>
-                                <label class="col-lg-2 control-label">Almoço</label><div class="col-lg-2"><input type="number"   ng-model="crianca.almoco" value=""></div>
+                                <div class="col-lg-3"><input type="number" ng-model="crianca.linguaFrancesa"></div>
+                                <label class="col-lg-1 control-label">Inglês</label><div class="col-lg-3"><input type="number" ng-model="crianca.linguaInglesa"></div>
+                                <label class="col-lg-2 control-label">Almoço</label><div class="col-lg-3"><input type="number"   ng-model="crianca.almoco" value=""></div>
                            </div>
                         </div>
                         <div class="form-group"><label class="col-lg-2 control-label">Data Inicio</label>
@@ -189,18 +217,30 @@
                          <div class="form-group"><label class="col-lg-2 control-label">Profissão do Pai</label>
                             <div class="col-lg-9"><input type="text" placeholder="Profissão do Pai" class="form-control" ng-model="crianca.profissaoPai"></div>
                         </div>
-                         <div class="form-group"><label class="col-lg-2 control-label">Telefone</label>
-                            <div class="col-lg-9"><input type="text" placeholder="Telefone" class="form-control" ng-model="crianca.telefonePai"></div>
-                        </div>
-                         <div class="form-group"><label class="col-lg-2 control-label">Movel</label>
-                            <div class="col-lg-9"><input type="text" placeholder="Movel" class="form-control" ng-model="crianca.movelPai"></div>
-                        </div>
+
                         <div class="form-group"><label class="col-lg-2 control-label">Morada</label>
-                            <div class="col-lg-9"><input type="text" placeholder="Nome Mãe" class="form-control" ng-model="crianca.moradaPai"></div>
+                            <div class="col-lg-9"><input type="text" placeholder="Morada" class="form-control" ng-model="crianca.moradaPai"></div>
                         </div>
                         <div class="form-group"><label class="col-lg-2 control-label">Alcunha</label>
                             <div class="col-lg-9"><input type="text" placeholder="Alcunha" class="form-control" ng-model="crianca.alcunhaPai"></div>
                         </div>
+                        <div class="form-group"><label class="col-lg-2 control-label">Telefone</label>
+                            <div class="col-lg-9"><input type="text" placeholder="Telefone" class="form-control" ng-model="crianca.telefonePai"></div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-2 control-label">Movel</label>
+                            <div class="col-lg-9"><input type="text" placeholder="Movel" class="form-control" ng-model="crianca.movelPai"></div>
+                        </div>
+
+                        <div id="contatos">
+                            
+                        </div>
+
+                        <div  class="form-group"><label class="col-lg-2 control-label">Novos Contatos:</label>
+
+                             <div class="col-lg-9"><span ng-click="addContactos()"><i style='color:green;' class="fa fa-plus-circle"></i></span></div>
+                        </div>
+
+
                         <div class="ibox-title" style="">
                                
                         </div>
@@ -253,6 +293,7 @@
             <div class="modal-body">
                 Desejas eliminar a Criança?
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">Não</button>
                 <button type="button" class="btn btn-primary" ng-click="confirmar()">Sim</button>
@@ -261,5 +302,120 @@
     </div>
 </div>
 
+<div class="modal inmodal fade" id="modalPagamento" tabindex="-1" role="dialog"  aria-hidden="true" style="">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">{{popupTittle}}</h4>
+            </div>
+            <div class="modal-body" style="background-color:#fff;">
+                <div class="modal-content">                   
+                   
+                    <form class="form-horizontal" id="form_crianca" name="form_crianca">
+                        <div class="col-lg-12">
+                            <div class="wrapper wrapper-content animated fadeInRight">
+                                <div class="">
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                           <span><img alt="image" class="img-square" style="width:6vw; height:15vh;" src="img/logo.jpg" /></span>
+                                            <address>
+                                                <strong>Escolinha Encanto</strong><br>
+                                                <strong>Jardim Infantil</strong><br>
+                                                Praia - Fanzenda<br>
+                                                <abbr title="Phone">Contactos:</abbr> 261 15 86<br>
+                                                <abbr title="NIF">NIF:</abbr> 214770109 </address>
+                                        </div>
+                                        <div class="col-sm-5 text-left">
+                                            <h4>Recibo Nº. NV-000567F7-00</h4>
+                                            
+                                           <address>
+                                                
+                                                <strong>Nome: </strong>{{ nomeCriancaFatura}}<br>
+                                                
+                                                <abbr title="Phone"><strong>Sala: </strong></abbr>{{sala}} 
+                                            </address>
+                                            <p>
+                                                <span><strong>Data:</strong> {{dataFatura}}</span><br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive m-t">
+                                        <table class="table invoice-table">
+                                            <thead>
+                                            <tr>
+                                                <th>Descrição Pagamento</th>
+                                                <th style="text-align:center;">Mês</th>
+                                                <th style="text-align:center;">Ano</th>
+                                                <th>Valor</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <div >
+                                                    
+                                                    <td>
+                                                        <select class="chosen-select" ng-click="tipoPagamento(fatura)" style="" tabindex="2" ng-model="fatura.tipo_pagamento" ng-required="true" ng-options="tipoPagamento for tipoPagamento in tipoPagamentos">
+                                                          
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="chosen-select" ng-click="mesPagamento(fatura)" style="" tabindex="2" ng-model="fatura.mes_referencia" ng-required="true" ng-options="mes for mes in meses">
+                                                          
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                         <select class="chosen-select" ng-click="anoPagamento(fatura)" style="" tabindex="2" ng-model="fatura.ano_referencia" ng-required="true" ng-options="ano for ano in anos">
+                                                          
+                                                        </select>
+                                                    </td>
+                                                </div>
+                                               <td><input type="number" ng-model='fatura.montante_pago'>$00 <input type="hidden" ng-model='fatura.valorDivida'></td></td>
 
+                                               <td><i style='color:green;' class="fa fa-plus-circle" ng-click="adicionarValor(fatura)"></td></td>
+                                            </tr>
+                                                </div>
+                                            <tr ng-repeat="iten in itens" ng-hide="iten.montante_pago == 0">  
+
+                                                <td><span ng-bind="iten.tipo_pagamento"></span></td>
+                                                <td><span ng-bind="iten.mes_referencia"></span></td>
+                                                <td><span ng-bind="iten.ano_referencia"></span></td>
+                                                <td><span ng-bind="iten.montante_pago"></span>$00</td>
+                                                <td><i style='color:red;' class="fa fa-minus-circle" ng-click="removerItem($index)"></i></td> 
+                                                
+                                            </tr>                                       
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /table-responsive -->
+
+                                    <table class="table invoice-total">
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Sub Total :</strong></td>
+                                                <td><span ng-bind="subtotal"></span>$00</td>
+                                            </tr>                                       
+                                            <tr>
+                                                <td><strong>TOTAL :</strong></td>
+                                                <td><span ng-bind="total"></span>$00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-right">
+                                          <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="cancelarCrianca()">Cancelar</button>
+                                        <button class="btn btn-primary" ng-click="efetuarPagamento()"><i class=""></i> Efetuar Pagamento</button>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

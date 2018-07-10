@@ -53,11 +53,11 @@
     <div class="form-group"><label class="col-lg-2 control-label">Propina</label>
         <div class="col-lg-9"><input type="number" placeholder="Propina" class="form-control" ng-model="crianca.propina" ng-required="true"></div>
     </div>
-    <div class="form-group"><label class="col-lg-2 control-label">Lingua Estrang.</label>
+    <div class="form-group"><label class="col-lg-2 control-label">Francês</label>
         <div class="col-lg-9">
-            <label class="col-lg-2 control-label">Francês</label><div class="col-lg-1"><input type="checkbox" ng-model="crianca.linguaFrancesa"></div>
-            <label class="col-lg-1 control-label">Inglês</label><div class="col-lg-1"><input type="checkbox" ng-model="crianca.linguaInglesa"></div>
-            <label class="col-lg-2 control-label">Almoço</label><div class="col-lg-2"><input type="number"   ng-model="crianca.almoco" value=""></div>
+            <div class="col-lg-3"><input type="number" ng-model="crianca.linguaFrancesa"></div>
+            <label class="col-lg-1 control-label">Inglês</label><div class="col-lg-3"><input type="number" ng-model="crianca.linguaInglesa"></div>
+            <label class="col-lg-2 control-label">Almoço</label><div class="col-lg-3"><input type="number" ng-model="crianca.almoco" value=""></div>
        </div>
     </div>
     <div class="form-group"><label class="col-lg-2 control-label">Data Inicio</label>
@@ -134,7 +134,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="cancelarCrianca()">Cancelar</button>
         <button type="button" class="btn btn-primary" ng-click="criarCrianca(crianca)" ng-show="sizeCrianca.length==0">Registar</button>
-        <button type="button" class="btn btn-primary" ng-click="editarCrianca(crianca)" ng-show="sizeCrianca.length>0" >Editar</button>
+        <button type="button" class="btn btn-primary" ng-click="editarCrianca(crianca)" >Editar</button>
         <button type="button" class="btn btn-danger"  ng-click="eliminarCrianca(crianca.idCrianca)" ng-show="sizeCrianca.length>0" data-toggle="modal" data-target="#myModalEliminar"><span>Eliminar</span></button>
         
     </div>

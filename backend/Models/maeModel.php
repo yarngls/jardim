@@ -1,7 +1,8 @@
 <?php
 
 	class Mae{
-		var $idMae;
+
+		/*var $idMae;
 		var $nomeMae;
 		var $profissaoMae;
 		var $telefoneMae;
@@ -10,14 +11,23 @@
 		var $alcunhaMae;
 
 
-		function registarMae($mae,$db){
+		function __construct($crianca){
 
-			$nomeMae			=	@$mae['nomeMae'];
-			$profissaoMae		=	@$mae['profissaoMae'];
-			$telefoneMae		=	@$mae['telefoneMae'];
-			$movelMae			=	@$mae['movelMae'];
-			$moradaMae			=	@$mae['moradaMae'];
-			$alcunhaMae			=	@$mae['alcunhaMae'];
+			parent::__construct($crianca);
+			$this->idMae=@$crianca["idMae"];
+			$this->nomeMae=@$crianca["nomeMae"];
+			$this->profissaoMae=@$crianca["profissaoMae"];
+			$this->telefoneMae=@$crianca["telefoneMae"];
+			$this->movelMae=@$crianca["movelMae"];
+			$this->moradaMae=@$crianca["moradaMae"];
+			$this->alcunhaMae=@$crianca["alcunhaMae"];
+
+		}*/
+
+
+		function registarMae($nomeMae,$profissaoMae,$telefoneMae,$movelMae,$moradaMae,$alcunhaMae,$db){
+
+			
 
 			$insert_mae = $db->query("INSERT into mae(nomeMae,profissaoMae,telefoneMae,
 													movelMae,moradaMae,alcunhaMae)
@@ -47,16 +57,7 @@
 								 			or die(mysqli_error($db));		
 		} 
 
-		/*function __construct($idMae,$nomeMae,$profissaoMae,$telefoneMae,$movelMae,$moradaMae,$alcunhaMae){
-			$this->$idMae=$idMae;
-			$this->$nomeMae=$nomeMae;
-			$this->$profissaoMae=$profissaoMae;
-			$this->$telefoneMae=$telefoneMae;
-			$this->$movelMae=$movelMae;
-			$moradaMae->$moradaMae=$moradaMae;
-			$alcunhaMae->$alcunhaMae=$alcunhaMae;
-
-		}*/
+		
 	}
 
 ?>

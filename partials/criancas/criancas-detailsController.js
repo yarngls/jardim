@@ -1,7 +1,7 @@
 angular.module("app")
 	.controller("criancas-detailsController",function($scope,$http,$routeParams,ModelUrl,funcoesApp){
 		//$scope.tittle="Informações Geral da Criança";
-		console.log("Meu id " + $routeParams.idCrianca);
+		//console.log("Meu id " + $routeParams.idCrianca);
 
 		var url = ModelUrl.crianca_detailsUrl;
 		console.log(url);
@@ -65,8 +65,9 @@ angular.module("app")
 	
 		$scope.getCrianca = function(){
 			$http.get(url+'?id='+$routeParams.idCrianca).success(function(data,status,headers,config){				
-				//console.log(data);
-				$scope.criancaFormatar = data[0];
+				$scope.totalPagamentos=data["totalPagamentos"];
+				$scope.totalDividas=data["totalDividas"];
+				$scope.criancaFormatar = data["dadosCriancao"][0];
 				console.log($scope.criancaFormatar);
 				$scope.crianca=funcoesApp.formatarCrianca($scope.criancaFormatar);
 			}).error(function(data,status,headers,config){
@@ -98,5 +99,108 @@ angular.module("app")
 		}
 
 
+		$scope.editarCrianca = function(crianca){
+			console.log(crianca);
+			var condicao = 'atualizarCrianca';
+			$http({
+				method:"PUT",
+				url:url,
+				data:{crianca,condicao},
+			}).then(function(response){
+				console.log(response.data);
+				/*$scope.getallCrianca();
+				$("#modalRegistarCrianca").modal("hide");
+				window.location.href="#/criancas";*/
+			});
+		}
+
+		$scope.alertConfirm = function(){
+			$.alert({
+					    title: 'Alert!',
+					    content: 'Simple alert!',
+					});
+		}
+
+
+		$scope.listarPagamentos = function(){
+			var criancas = $scope.crianca;
+			var condicao = 'listarTodosPagamentos';
+			var idCrianca = $routeParams.idCrianca;
+			$http({
+				method:"PUT",
+				url:url,
+				data:{criancas,idCrianca,condicao},
+			}).then(function(response){
+				$scope.pagamentos = response.data;
+				//console.log(response);
+			});
+
+		}
+
+
+		$scope.listarDividas = function(){
+			$scope.dividasporPagar=[];
+			$scope.subtotal=0;
+			$scope.total=0;
+			var criancas = $scope.crianca;
+			var condicao = 'listarTodasDividas';
+			var idCrianca = $routeParams.idCrianca;
+			$http({
+				method:"PUT",
+				url:url,
+				data:{criancas,idCrianca,condicao},
+			}).then(function(response){
+				$scope.dividas = response.data;
+				//console.log(response);
+			});
+
+		}
+
+		$scope.dividasporPagar=[];
+		$scope.subtotal=0;
+		$scope.total=0;
+		$scope.adicionarDivida = function(index){
+			if($scope.dividasporPagar.length==0){
+				$scope.dividasporPagar.push($scope.dividas[index]);
+				$scope.subtotal=parseInt($scope.subtotal)+parseInt($scope.dividas[index].montante);
+				$scope.total=parseInt($scope.total)+parseInt($scope.dividas[index].montante);
+				console.log($scope.dividasporPagar);
+			}else{				
+				for(i=0;i<$scope.dividasporPagar.length;i++){
+					if($scope.dividasporPagar[i] == $scope.dividas[index]){
+						$scope.dividasporPagar[i];
+						console.log("igual " + 	index);
+						return;
+					}
+				}
+				$scope.dividasporPagar.push($scope.dividas[index]);
+				$scope.subtotal=parseInt($scope.subtotal)+parseInt($scope.dividas[index].montante);
+				$scope.total=parseInt($scope.total)+parseInt($scope.dividas[index].montante);
+				console.log("diferente " + 	index);			
+			}
+		}
+
+		$scope.removerDivida = function(index){
+			var valorAntes=$scope.dividasporPagar[index].montante;
+			$scope.dividasporPagar[index].montante=0;
+			$scope.dividas[index].montante=valorAntes;
+			//valorAntes=0;
+		}
+
+		$scope.liquidarDivida = function(){
+
+			var fatura = $scope.dividasporPagar;
+			var criancas = $scope.crianca;
+			var condicao = 'liquidaDividas';
+			var idCrianca = $routeParams.idCrianca;
+			$http({
+				method:"PUT",
+				url:url,
+				data:{criancas,idCrianca,condicao,fatura},
+			}).then(function(response){
+				//$scope.dividas = response.data;
+				console.log(response.data);
+			});
+		}
 
 	});

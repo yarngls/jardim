@@ -1,21 +1,7 @@
 <?php
 	class Pai{
 
-		var $idPai;
-		var $nomePai;
-		var $profissaoPai;
-		var $telefonePai;
-		var $moradaPai;
-		var $alcunhaPai;
-
-
-		function registarPai($pai,$db){
-			$nomePai					=	@$pai['nomePai'];
-			$profissaoPai				=	@$pai['profissaoPai'];
-			$telefonePai				=	@$pai['telefonePai'];
-			$movelPai					=	@$pai['movelPai'];
-			$moradaPai					=	@$pai['moradaPai'];
-			$alcunhaPai					=	@$pai['alcunhaPai'];
+		function registarPai($nomePai,$profissaoPai,$telefonePai,$movelPai,$moradaPai,$alcunhaPai,$db){
 
 			$insert_pai = $db->query("INSERT into pai(nomePai,profissaoPai,telefonePai,
 													movelPai,moradaPai,alcunhaPai)
@@ -46,12 +32,5 @@
 		}
 
 
-		/*function __construct($nomePai,$profissaoPai,$telefonePai,$moradaPai,$alcunhaPai){
-			$this->$nomePai=$nomePai;
-			$this->profissaoPai=$profissaoPai;
-			$this->$telefonePai=$telefonePai;
-			$moradaPai->$moradaPai=$moradaPai;
-			$alcunhaPai->$alcunhaPai=$alcunhaPai;
-		}*/
 	}
 ?>

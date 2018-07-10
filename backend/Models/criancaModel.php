@@ -3,7 +3,7 @@
 	include_once '../config/db_config.php';
 	include_once 'paiModel.php';
 	include_once 'maeModel.php';
-
+	include_once 'dividasModel.php';
 	class Crianca {
 
 		var $idCrianca;
@@ -26,50 +26,88 @@
 		var $estado;
 		var $idPai;
 		var $idmae;
+		
+		var $nomePai;
+		var $profissaoPai;
+		var $telefonePai;
+		var $movelPai;
+		var $moradaPai;
+		var $alcunhaPai;
+
+		
+		var $nomeMae;
+		var $profissaoMae;
+		var $telefoneMae;
+		var $movelMae;
+		var $moradaMae;
+		var $alcunhaMae;
 
 
+		function __construct($crianca){
+			
+		
+			$this->fotoPerfil=@$crianca["fotoPerfil"];
+			$this->nome=@$crianca["nome"];
+			$this->sexo=@$crianca["sexo"];
+			$this->dataNascimento=@$crianca["dataNascimento"];
+			$this->idade=@$crianca["idade"];
+			$this->alcunha=@$crianca["alcunha"];
+			$this->numeroPMI=@$crianca["numeroPMI"];
+			$this->periodoManha=@$crianca["periodoManha"];
+			$this->periodoTarde=@$crianca["periodoTarde"];
+			$this->diaInteiro=@$crianca["diaInteiro"];
+			$this->propina=@$crianca["propina"];
+			$this->linguaFrancesa=@$crianca["linguaFrancesa"];
+			$this->linguaInglesa=@$crianca["linguaInglesa"];
+			$this->almoco=@$crianca["almoco"];
+			$this->morada=@$crianca["morada"];
+			$this->dataInicioJardim=@$crianca["dataInicioJardim"];
+			$this->estado=@$crianca["estado"];
+			$this->idPai=@$crianca["idPai"];
+			$this->idmae=@$crianca["idmae"];
+			
+
+			$this->nomePai=@$crianca['nomePai'];
+			$this->profissaoPai=@$crianca['profissaoPai'];
+			$this->telefonePai=@$crianca['telefonePai'];
+			$this->movelPai=@$crianca['movelPai'];
+			$this->moradaPai=@$crianca['moradaPai'];
+			$this->alcunhaPai=@$crianca['alcunhaPai'];
+			
+
+			$this->nomeMae=@$crianca["nomeMae"];
+			$this->profissaoMae=@$crianca["profissaoMae"];
+			$this->telefoneMae=@$crianca["telefoneMae"];
+			$this->movelMae=@$crianca["movelMae"];
+			$this->moradaMae=@$crianca["moradaMae"];
+			$this->alcunhaMae=@$crianca["alcunhaMae"];
+
+
+		
+		}
 
 
 		function registarCrianca($crianca,$db){
-			$nome						= 	@$crianca['nome'];
-			$sexo						= 	@$crianca['sexo'];
-			$dataNascimentoForm     	= 	@$crianca['dataNascimento'];
-			$ExplodedataNascimento 		= 	explode("T", $dataNascimentoForm);
-			$dataNascimento				= 	$ExplodedataNascimento[0];
-			$idade						= 	@$crianca['idade'];
-			$alcunha					= 	@$crianca['alcunha'];
-			$numeroPMI					= 	@$crianca['numeroPMI'];			
-			$periodoManha				= 	@$crianca['periodoManha'];
-			$periodoTarde				= 	@$crianca['periodoTarde'];
-			$diaInteiro					= 	@$crianca['diaInteiro'];			
-			$propina					= 	@$crianca['propina'];			
-			$linguaFrancesa				= 	@$crianca['linguaFrancesa'];
-			$linguaInglesa				= 	@$crianca['linguaInglesa'];
-			$almoco						= 	@$crianca['almoco'];			
-			$nomePai					= 	@$crianca['nomePai'];
-			$nomeMae					= 	@$crianca['nomeMae'];
-			$encaregadoEducacao			= 	@$crianca['encaregadoEducacao'];
-			$morada						= 	@$crianca['morada'];
-			$dataInicioJardimForm     	= 	@$crianca['dataInicioJardim'];
-			$ExplodedataInicioJardim 	= 	explode("T", $dataInicioJardimForm);
-			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
-			$estado						= 	@$crianca['estado'];
+			
 
 			$pai = new Pai();
-			$idPai=$pai->registarPai($crianca,$db);
+			$idPai=$pai->registarPai($this->nomePai,$this->profissaoPai,$this->telefonePai,$this->movelPai,$this->moradaPai,$this->alcunhaPai,$db);
+			$this->idPai=$idPai;
 
 			$mae = new Mae();
-			$idMae=$mae-> registarMae($crianca,$db);
+			$idMae=$mae->registarMae($this->nomeMae,$this->profissaoMae,$this->telefoneMae,$this->movelMae,$this->moradaMae,$this->alcunhaMae,$db);
+			$this->idMae=$idMae;
 
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,periodoManha,periodoTarde,diaInteiro,propina,
 																  linguaFrancesa,linguaInglesa,almoco,morada,dataInicioJardim,estado,idPai,idMae)
-								values('$nome','$sexo','$dataNascimento',
-									   '$idade','$alcunha','$numeroPMI','$periodoManha','$periodoTarde','$diaInteiro','$propina',
-									   '$linguaFrancesa','$linguaInglesa','$almoco','$morada','$dataInicioJardim','$estado','$idPai','$idMae');") 
+								values('$crianca->nome','$crianca->sexo','$crianca->dataNascimento',
+									   '$crianca->idade','$crianca->alcunha','$crianca->numeroPMI','$crianca->periodoManha','$crianca->periodoTarde','$crianca->diaInteiro','$crianca->propina',
+									   '$crianca->linguaFrancesa','$crianca->linguaInglesa','$crianca->almoco','$crianca->morada','$crianca->dataInicioJardim',
+									   '$crianca->estado','$crianca->idPai','$crianca->idMae');") 
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
-			$crianca["id"] = $id_crianca;
+
 
 			$insert_estatisticas = $db->query("INSERT into estatisticas(idCrianca)values('$id_crianca');") 
 							or die(mysqli_error($db));
@@ -79,7 +117,9 @@
 		}
 
 
-		function getAllCrianca($db){
+		function getAllCrianca($crianca,$db){
+			$dividas = new Dividas(); 
+			$dividas->registarDivida($db);
 			$select_all=$db->query("SELECT * FROM criancas C, pai P,mae M, estatisticas E where C.idPai=P.idPai and C.idMae=M.idMae and C.idCrianca=E.idCrianca and C.estado!='Suspenso'order by C.nome;");
 				$criancas = []; 
 				while ($data = mysqli_fetch_assoc($select_all))
@@ -92,9 +132,9 @@
 				}
 				echo json_encode($criancas);
 		}
-
 		
 		function updateCrianca($crianca,$db){
+			
 			$idCrianca					= 	@$crianca['idCrianca'];
 			$nome						= 	@$crianca['nome'];
 			$sexo						= 	@$crianca['sexo'];
@@ -133,7 +173,7 @@
 											morada='$morada',dataInicioJardim='$dataInicioJardim',
 											estado='$estado' where idCrianca='$idCrianca';")
 								 			or die(mysqli_error($db));
-				echo json_encode("sucess");
+				return ("sucess upfdaasds");
 			
 		}
 
@@ -145,7 +185,7 @@
 		}
 
 		function selectByID($idCrianca,$db){
-			$selectByID=$db->query("SELECT * FROM criancas C, pai P,mae M, estatisticas E where C.idPai=P.idPai and C.idMae=M.idMae and C.idCrianca=E.idCrianca and C.idCrianca='$idCrianca' and C.estado!='Suspenso'order by C.nome;");
+			$selectByID=$db->query("SELECT * FROM criancas C, pai P,mae M, estatisticas E where C.idPai=P.idPai and C.idMae=M.idMae and C.idCrianca=E.idCrianca and C.idCrianca='$idCrianca';");
 				
 			$criancas = []; 
 
@@ -159,6 +199,23 @@
 			}
 
 			return $criancas;
+		}
+
+		function selectCountPagamentos($idCrianca,$db){
+			$pagamento=$db->query("SELECT count(id_crianca) as total FROM `pagamento` where id_crianca='$idCrianca';");	
+			
+			$result = mysqli_fetch_assoc($pagamento);
+
+			return $result["total"];
+		}
+
+		function selectCountDividas($idCrianca,$db){
+			$dividas=$db->query("SELECT count(id_crianca) as total FROM `dividas` where id_crianca='$idCrianca' and estado='pendente';");	
+			
+			$result = mysqli_fetch_assoc($dividas);
+
+			return $result["total"];
+			
 		}
 
 		function saveEstatisticas($crianca,$db){
@@ -200,29 +257,7 @@
 
 			return $frequentouOutroJardim;
 		}
-		/*function __construct($fotoPerfil,$nome,$sexo,$dataNascimento,$idade,$alcunha,$numeroPMI,$periodoManha,
-							$periodoTarde,$diaInteiro,$propina,$linguaFrancesa,$linguaInglesa,$almoco,$morada,$dataInicioJardim,$estado){
-			
 		
-			$this->$fotoPerfil=$fotoPerfil;
-			$this->$nome=$nome;
-			$this->$sexo=$sexo;
-			$this->$dataNascimento=$dataNascimento;
-			$this->$idade=$idade;
-			$this->$alcunha=$alcunha;
-			$this->$numeroPMI=$numeroPMI;
-			$this->$periodoManha=$periodoManha;
-			$this->$periodoTarde=$periodoTarde;
-			$this->$diaInteiro=$diaInteiro;
-			$this->$propina=$propina;
-			$this->$linguaFrancesa=$linguaFrancesa;
-			$this->$linguaInglesa=$linguaInglesa;
-			$this->$almoco=$almoco;
-			$this->$morada=$morada;
-			$this->$dataInicioJardim=$dataInicioJardim;
-			$this->$estado=$estado;
-		
-		}*/
 		
 	}
 ?>

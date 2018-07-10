@@ -7,6 +7,7 @@ var app  = angular.module('app',['ngRoute','ng-fusioncharts','urlService','funco
 		when('/',{controller:'homeController',templateUrl:"partials/home/home.html"}).
 		when('/criancas',{controller:'criancasController',templateUrl:"partials/criancas/criancas.html"}).
 		when('/criancas-details/:idCrianca',{controller:'criancas-detailsController',templateUrl:"partials/criancas/criancas-details.html"}).
+		when('/criancas-details/:idCrianca',{controller:'criancas-detailsController',templateUrl:"partials/criancas/criancas-details.html"}).
 		/*when('/primavera',{controller:'primaveraController',templateUrl:"partials/primavera/primavera.html"}).
 		when('/horario',{controller:'horario_funcionarioController',templateUrl:"partials/horario/horario_funcionarios.html"}).*/
 		otherwise({redirectTo:'/'});

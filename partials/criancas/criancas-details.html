@@ -1,65 +1,49 @@
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>{{tittle}}</h2>
+    <div class="col-sm-12">
+        <div class="" style="text-align:right;">
+            <div class="col-lg-12">
+                <h2></h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#/criancas"><span><button class="btn btn-primary">Listar Todas Crianças</button></span></a>
+                    </li>                    
+                </ol>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row animated fadeInRight">
-    <div class="col-lg-4">
-        <div class="widget-head-color-box navy-bg p-lg text-center" style="background-color:white;">
-            <div class="m-b-md">
-                <div class="widget lazur-bg p-xl" style="text-align:left;">
+<div class="row animated fadeInRight">  
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content mailbox-content">
+                <div class="file-manager">
+                    <a class="btn btn-block btn-primary compose-mail" href="">Perfil da Crianca</a>
+                    <div class="space-25"></div>
                     <div id="profile-container" class="">
                         <image id="profileImage" src="img/superHeroy.jpg" class="img-circle circle-border m-b-md"/>
                         <input id="imageUpload" type="file"  name="profile_photo" placeholder="Photo" required="" capture>
-                    </div><label class="col-lg-1 control-label"></label><div class="col-lg-1"></div>
-                    <div class="" style="margin-top:2vh;">
-                           
-                    </div>                  
-                   
-                    <h3>
-                        {{crianca.nome}}
-                    </h3>
-                    <ul class="list-unstyled m-t-md">                       
-                        <li>
-                            <span class="fa fa-home m-r-xs"></span>
-                            <label>Morada:</label>
-                           {{crianca.morada}}
-                        </li>  
-                        <li>
-                            <span class="fa fa-home m-r-xs"></span>
-                            <label>Sexo:</label>
-                           {{crianca.sexo}}
-                        </li>
-                        <li>
-                            <span class="fa fa-phone m-r-xs"></span>
-                            <label>Nº PMI:</label>
-                           {{crianca.numeroPMI}}
-                        </li> 
-                        <li>
-                            <span class="fa fa-phone m-r-xs"></span>
-                            <label>Aniversário:</label>
-                           {{crianca.dataNascimento}}
-                        </li>
-                        <li>
-                            <span class="fa fa-phone m-r-xs"></span>
-                            <label>Propina:</label>
-                           {{crianca.propina}}$00
-                        </li>
+                    </div>
+                    <div class="space-25"></div>
+                    <h5>Informações</h5>
+                    <ul class="folder-list m-b-md" style="padding: 0">
+                        <li><a ng-click="listarPagamentos()"><button style="border:none; background-color:#f3f3f4" data-toggle="modal" data-target="#modalTodosPagamentos"> <i class="fa fa-inbox "></i> Pagamentos</button><span class="label label-success pull-right">{{totalPagamentos}}</span></a></li>
+                        <li><a ng-click="listarDividas()"><button style="border:none; background-color:#f3f3f4" data-toggle="modal" data-target="#modalTodasDividas"> <i class="fa fa-inbox "></i> Dividas</button><span class="label label-danger pull-right">{{totalDividas}}</span></a></li>
                     </ul>
+                    <!--<h5>Categories</h5>
+                    <ul class="category-list" style="padding: 0">
+                        <li><a> <i class="fa fa-circle text-navy"></i> Work </a></li>
+                        <li><a> <i class="fa fa-circle text-danger"></i> Documents</a></li>
+                        <li><a> <i class="fa fa-circle text-primary"></i> Social</a></li>
+                        <li><a> <i class="fa fa-circle text-info"></i> Advertising</a></li>
+                        <li><a> <i class="fa fa-circle text-warning"></i> Clients</a></li>
+                    </ul>-->
+                    <div class="clearfix"></div>
                 </div>
-                
-            </div>
-        </div>
-        <div class="widget-text-box">
-            <h4 class="media-heading">Alex Smith</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <div class="text-right">
-               
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-8">
             <div class="wrapper wrapper-content animated fadeInUp">
                 <div class="ibox">
                     <div class="ibox-content">
@@ -69,11 +53,11 @@
                                    
                                     <h2>Relátorios da Criança</h2>
                                 </div>
-                                <div>
+                                <!--<div>
                                     <span>Pagamentos 10</span> |
                                     <span>Dividas 3</span> |
                                     <span>Estado Matriculado</span>
-                                </div>
+                                </div>-->
                                 
                             </div>
                         </div>
@@ -84,7 +68,7 @@
                                     <div class="panel-heading">
                                         <div class="panel-options">
                                             <ul class="nav nav-tabs">                                           
-                                                <li class="active"><a data-toggle="tab" ng-click='paisEncarregadosEducacao()'>Pais Encarregados de Educação</a></li>
+                                                <li class="active"><a data-toggle="tab" ng-click='paisEncarregadosEducacao()'>Dados Criança</a></li>
                                                 <li class=""><a data-toggle="tab" ng-click='dadosEstatisticos()' >Dados Estatísticos</a></li>
                                                 <li class=""><a data-toggle="tab" ng-click='casoUrgencia()' >Informações em caso de Urgência</a></li>
                                             </ul>
@@ -114,6 +98,177 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="modalTodosPagamentos" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top:25vh;">
+    <div class="modal-dialog" style="width:80vw;">
+    <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+               <h4>Lista de todos os pagamentos efetuados</h4>
+            </div>
+                <div class="col-md-12">
+                    <div class="input-group"><input type="text" placeholder="Pesquisar" class="input-sm form-control"  ng-model="pesquisar"> <span class="input-group-btn">
+                        <button type="button" class="btn btn-sm btn-primary">Pesquisar!</button> </span>
+                    </div>
+                </div>
+            <div class="modal-body">
+                 <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Ordem Pagamento</th>
+                        <th>Tipo Pagamento</th>
+                        <th>Mês Referencia</th>
+                        <th>Ano Referencia</th>
+                        <th>Montante</th>
+                        <th>Data Pagamento</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pagamento in pagamentos | filter : pesquisar">
+                            <td>{{pagamento.ordem_pagamento}}</small></td>                           
+                            <td>{{pagamento.tipo_pagamento}}</small></td>                           
+                            <td>{{pagamento.mes_referencia}}</small></td>                           
+                            <td>{{pagamento.ano_referencia}}</small></td>                           
+                            <td>{{pagamento.montante_pago}}</small></td>                           
+                            <td>{{pagamento.dia_pagamento}}</small></td>                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+               <!-- <button type="button" class="btn btn-white" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" ng-click="confirmar()">Sim</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="modalTodasDividas" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top:10vh;">
+    <div class="modal-dialog" style="width:90vw;">
+    <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+               <h4>Lista de todas as dividas</h4>
+            </div>
+            <div class="col-md-12">
+                    <div class="input-group"><input type="text" placeholder="Pesquisar" class="input-sm form-control"  ng-model="pesquisarDividas"> <span class="input-group-btn">
+                        <button type="button" class="btn btn-sm btn-primary">Pesquisar!</button> </span>
+                    </div>
+                </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="col-sm-12 b-r">
+                             <table class="table table-striped">
+                                <thead>
+                                <tr>                        
+                                    <th>Tipo Divida</th>
+                                    <th>Mês Referencia</th>
+                                    <th>Ano Referencia</th>
+                                    <th>Montante</th>
+                                    <th>Adicionar a Fatura</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="divida in dividas | filter : pesquisarDividas">
+                                        <td>{{divida.tipo_divida}}</small></td>                         
+                                        <td>{{divida.mes_referencia}}</small></td>                           
+                                        <td>{{divida.ano_referencia}}</small></td>                           
+                                        <td>{{divida.montante}}$00</small></td>                           
+                                        <td><a><i style='color:green;' class="fa fa-plus-circle" ng-click="adicionarDivida($index)"></i></a></td>                           
+                                    </tr>
+                                </tbody>
+                            </table>  
+                        </div>                      
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="modal-content"> 
+                            <form class="form-horizontal" id="form_crianca" name="form_crianca">
+                                <div class="col-lg-12">
+                                    <div class="wrapper wrapper-content animated fadeInRight">
+                                        <div class="">
+                                            <div class="row">
+                                                <div class="col-sm-7">
+                                                   <span><img alt="image" class="img-square" style="width:6vw; height:15vh;" src="img/logo.jpg" /></span>
+                                                    <address>
+                                                        <strong>Escolinha Encanto</strong><br>
+                                                        <strong>Jardim Infantil</strong><br>
+                                                        Praia - Fanzenda<br>
+                                                        <abbr title="Phone">Contactos:</abbr> 261 15 86<br>
+                                                        <abbr title="NIF">NIF:</abbr> 214770109 </address>
+                                                </div>
+                                                <div class="col-sm-5 text-left">
+                                                    <h4>Recibo Nº. NV-000567F7-00</h4>
+                                                    
+                                                   <address>
+                                                        
+                                                        <strong>Nome: </strong>{{crianca.nome}}<br>
+                                                        
+                                                        <abbr title="Phone"><strong>Sala: </strong></abbr>{{sala}} 
+                                                    </address>
+                                                    <p>
+                                                        <span><strong>Data:</strong> {{dataFatura}}</span><br/>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive m-t">
+                                                <table class="table invoice-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tipo Divida</th>
+                                                            <th>Mês</th>
+                                                            <th>Ano</th>
+                                                            <th>Valor</th>
+                                                            <th>Remover</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="dividaporPagar in dividasporPagar" ng-hide="dividaporPagar.montante == 0">                                                        
+                                                            <td>{{dividaporPagar.tipo_divida}}</td>
+                                                            <td>{{dividaporPagar.mes_referencia}}</td>
+                                                            <td>{{dividaporPagar.ano_referencia}}</td>
+                                                            <td>{{dividaporPagar.montante}}$00</td>
+                                                            <td><a><i style='color:red;' class="fa fa-minus-circle" ng-click="removerDivida($index)"></i></a></td>
+                                                        </tr>                         
+                                                    </tbody>
+                                                </table>
+                                            </div><!-- /table-responsive -->
+
+                                            <table class="table invoice-total">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>Sub Total :</strong></td>
+                                                        <td><span ng-bind="subtotal"></span>$00</td>
+                                                    </tr>                                       
+                                                    <tr>
+                                                        <td><strong>TOTAL :</strong></td>
+                                                        <td><span ng-bind="total"></span>$00</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="text-right">
+                                                  <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="cancelarCrianca()">Cancelar</button>
+                                                <button class="btn btn-primary" ng-click="liquidarDivida()"><i class=""></i> Efetuar Pagamento</button>
+                                            </div>                                             
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-white" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" ng-click="confirmar()">Sim</button>-->
             </div>
         </div>
     </div>
