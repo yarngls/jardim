@@ -130,7 +130,7 @@
 							or die(mysqli_error($db));
 			$id_estatisticas=mysqli_insert_id($db);
 
-			echo json_encode($crianca->dataNascimento);
+			echo json_encode($id_crianca);
 		}
 
 
