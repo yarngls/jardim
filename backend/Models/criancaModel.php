@@ -49,7 +49,14 @@
 			$this->fotoPerfil=@$crianca["fotoPerfil"];
 			$this->nome=@$crianca["nome"];
 			$this->sexo=@$crianca["sexo"];
-			$this->dataNascimento=@$crianca["dataNascimento"];
+
+			$dataNascimentoForm     	= 	@$crianca['dataNascimento'];
+			$ExplodedataNascimento 		= 	explode("T", $dataNascimentoForm);
+			$dataNascimento				= 	$ExplodedataNascimento[0];
+
+			$this->dataNascimento =	$dataNascimento	;
+
+
 			$this->idade=@$crianca["idade"];
 			$this->alcunha=@$crianca["alcunha"];
 			$this->numeroPMI=@$crianca["numeroPMI"];
@@ -61,7 +68,14 @@
 			$this->linguaInglesa=@$crianca["linguaInglesa"];
 			$this->almoco=@$crianca["almoco"];
 			$this->morada=@$crianca["morada"];
-			$this->dataInicioJardim=@$crianca["dataInicioJardim"];
+
+			$dataInicioJardimForm     	= 	@$crianca['dataInicioJardim'];
+			$ExplodedataInicioJardim 	= 	explode("T", $dataInicioJardimForm);
+			$dataInicioJardim			= 	$ExplodedataInicioJardim[0];
+
+			$this->dataInicioJardim=$dataInicioJardim;
+
+
 			$this->estado=@$crianca["estado"];
 			$this->idPai=@$crianca["idPai"];
 			$this->idmae=@$crianca["idmae"];
@@ -98,17 +112,15 @@
 			$idMae=$mae->registarMae($this->nomeMae,$this->profissaoMae,$this->telefoneMae,$this->movelMae,$this->moradaMae,$this->alcunhaMae,$db);
 			$this->idMae=$idMae;
 
-			$ArrayDataNacimento = explode("T", $crianca->dataNascimento);
-			$dataNacimentoCerto = $ArrayDataNacimento[0];
+		
 
-			$ArraydataInicioJardim = explode("T", $crianca->dataInicioJardim);
-			$dataInicioJardimCerto = $ArraydataInicioJardim[0];
+			
 			$insert_crianca = $db->query("INSERT into criancas(nome,sexo,dataNascimento,
 																  idade,alcunha,numeroPMI,periodoManha,periodoTarde,diaInteiro,propina,
 																  linguaFrancesa,linguaInglesa,almoco,morada,dataInicioJardim,estado,idPai,idMae)
-								values('$crianca->nome','$crianca->sexo','$dataNacimentoCerto',
+								values('$crianca->nome','$crianca->sexo','$this->dataNascimento',
 									   '$crianca->idade','$crianca->alcunha','$crianca->numeroPMI','$crianca->periodoManha','$crianca->periodoTarde','$crianca->diaInteiro','$crianca->propina',
-									   '$crianca->linguaFrancesa','$crianca->linguaInglesa','$crianca->almoco','$crianca->morada','$dataInicioJardimCerto',
+									   '$crianca->linguaFrancesa','$crianca->linguaInglesa','$crianca->almoco','$crianca->morada','$this->dataInicioJardim',
 									   '$crianca->estado','$crianca->idPai','$crianca->idMae');") 
 							or die(mysqli_error($db));
 			$id_crianca=mysqli_insert_id($db);
