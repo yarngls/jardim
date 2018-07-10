@@ -123,8 +123,21 @@ angular.module("app")
 				//console.log("resposta" + response.data);
 				$scope.getallCrianca();
 				//$("#form_crianca").trigger("reset");
-				$("#modalRegistarCrianca").modal("hide");	
-				window.location.href="#/criancas";	
+				$("#modalRegistarCrianca").modal("hide");
+				$.confirm({
+					title: false,
+				    content: 'Criança Registado com sucesso! <br> ',
+				    buttons: {
+				        OK: {
+				            btnClass: 'btn-green',
+				            action: function(){
+
+				            	window.location.href="#/criancas";	
+				            }
+				        },				       
+				    }
+				});
+				
 			});
 			
 		}

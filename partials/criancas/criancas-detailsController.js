@@ -93,6 +93,18 @@ angular.module("app")
 				data:{crianca,condicao}
 			}).success(function(response){
 				console.log(response);
+				$.confirm({
+					title: false,
+				    content: 'Registado com sucesso! <br> ',
+				    buttons: {
+				        OK: {
+				            btnClass: 'btn-green',
+				            action: function(){
+				            		
+				            }
+				        },				       
+				    }
+				});
 			}).error(function(response){
 				console.log(response);
 			});
@@ -108,6 +120,18 @@ angular.module("app")
 				data:{crianca,condicao},
 			}).then(function(response){
 				console.log(response.data);
+				$.confirm({
+					title: false,
+				    content: 'Criança atualizado com sucesso! <br> ',
+				    buttons: {
+				        OK: {
+				            btnClass: 'btn-green',
+				            action: function(){	
+
+				            }
+				        },				       
+				    }
+				});
 				/*$scope.getallCrianca();
 				$("#modalRegistarCrianca").modal("hide");
 				window.location.href="#/criancas";*/
