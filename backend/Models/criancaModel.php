@@ -147,7 +147,7 @@
 					}*/
 					$criancas[] = $data;
 				}
-				echo json_encode("criancas");
+				echo json_encode($criancas);
 		}
 		
 		function updateCrianca($crianca,$db){

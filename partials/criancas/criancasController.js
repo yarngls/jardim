@@ -97,8 +97,6 @@ angular.module("app")
 	
 
 		$scope.criarCrianca = function(crianca){
-			console.log($scope.crianca.dataNascimento);
-			console.log($scope.crianca.dataInicioJardim);
 			var picture = $("#imageUpload").val();
 			$http({
 				method:"POST",
