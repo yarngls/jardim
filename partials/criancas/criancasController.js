@@ -292,7 +292,10 @@ angular.module("app")
 			$scope.telefoneMai=crianca.telefoneMai;
 			$scope.telefoneMai=crianca.telefoneMai;
 			$scope.dataFatura = new Date();
-
+			$scope.propina=crianca.propina;
+			$scope.almoco=crianca.almoco;
+			$scope.linguaInglesa=crianca.linguaInglesa;
+			$scope.linguaFrancesa=crianca.linguaFrancesa;
 			$scope.itens=[];
 			$scope.subtotal=0;
 			$scope.total=0;
