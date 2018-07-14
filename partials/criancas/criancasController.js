@@ -252,7 +252,7 @@ angular.module("app")
 
 		$scope.CurrentIdCrianca;
 		$scope.pagamento = function(crianca){
-
+			delete $scope.fatura;
 			var condicao = 'consultarDividas';
 			var idCrianca=crianca.idCrianca;
 			$scope.CurrentIdCrianca=crianca.idCrianca;
